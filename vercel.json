@@ -28,8 +28,8 @@
             "dest": "/frontend/src/$1"
         },
         {
-            "src": "/(.*)",
-            "dest": "/frontend/src/index.html"
+        "src": "/(.*)",
+        "dest": "/frontend/index.html"
         }
 
         
