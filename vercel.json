@@ -17,19 +17,21 @@
         },
         {
             "src": "/main.js",
-            "dest": "frontend/src/main.js"
+            "dest": "/frontend/src/main.js"
         },
         {
             "src": "/styles.css",
-            "dest": "frontend/src/styles.css"
+            "dest": "/frontend/src/styles.css"
         },
         {
             "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico))",
-            "dest": "frontend/src/$1"
+            "dest": "7frontend/src/$1"
         },
         {
             "src": "/(.*)",
-            "dest": "frontend/src/index.html"
+            "dest": "/frontend/src/index.html"
         }
+
+        
     ]
 }
