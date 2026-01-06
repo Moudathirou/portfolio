@@ -1,37 +1,31 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src": "backend/main.py",
-            "use": "@vercel/python"
-        },
-        {
-            "src": "frontend/src/**",
-            "use": "@vercel/static"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/api/(.*)",
-            "dest": "backend/main.py"
-        },
-        {
-            "src": "/main.js",
-            "dest": "/frontend/src/main.js"
-        },
-        {
-            "src": "/styles.css",
-            "dest": "/frontend/src/styles.css"
-        },
-        {
-            "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico))",
-            "dest": "/frontend/src/$1"
-        },
-        {
-        "src": "/(.*)",
-        "dest": "/frontend/index.html"
-        }
-
-        
-    ]
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/main.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "frontend/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/main.py"
+    },
+    {
+      "src": "/main.js",
+      "dest": "/frontend/src/main.js"
+    },
+    {
+      "src": "/styles.css",
+      "dest": "/frontend/src/styles.css"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/index.html"
+    }
+  ]
 }
