@@ -1,0 +1,7 @@
+fastapi[standard]
+uvicorn
+pydantic[email]
+slowapi
+aiosmtplib
+python-multipart
+python-dotenv

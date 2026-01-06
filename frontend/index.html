@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saindou Moudathirou Ben | Ingénieur IA & Data Scientist Santé</title>
+    <meta name="description"
+        content="Portfolio de Saindou Moudathirou Ben, expert en IA Générative, Computer Vision et Machine Learning appliqué à la santé.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind (Output will be built here) -->
+    <link href="./src/output.css" rel="stylesheet">
+    <!-- Or CDN for dev/preview ease if needed, but we used local config, so we assume build process. 
+         For users without build process running, we might want to add a script for CDN as fallback or setup? 
+         Let's stick to local build assumption or add CDN for immediate visualization if user opens file.
+         Request said 'Tailwind CSS', implying a build step usually, but to make it viewable immediately without npm run build: -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#0F172A', light: '#1E40AF' },
+                        secondary: { DEFAULT: '#06B6D4', light: '#22D3EE' },
+                        accent: { purple: '#8B5CF6', green: '#10B981' },
+                        dark: { bg: '#020617', surface: '#0F172A' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Overrides until build setup is perfect */
+        body {
+            background-color: #020617;
+            color: #F8FAFC;
+        }
+    </style>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md bg-dark-bg/80 border-b border-white/5"
+        id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 font-bold text-2xl tracking-tighter text-secondary">
+                    SMB<span class="text-accent-purple">.AI</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about"
+                            class="hover:text-secondary transition-colors px-3 py-2 rounded-md text-sm font-medium">À
+                            Propos</a>
+                        <a href="#expertise"
+                            class="hover:text-secondary transition-colors px-3 py-2 rounded-md text-sm font-medium">Expertise</a>
+                        <a href="#services"
+                            class="hover:text-secondary transition-colors px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                        <a href="#projects"
+                            class="hover:text-secondary transition-colors px-3 py-2 rounded-md text-sm font-medium">Projets</a>
+                        <a href="#contact"
+                            class="px-4 py-2 rounded-full bg-secondary/10 text-secondary border border-secondary/20 hover:bg-secondary/20 transition-all">Me
+                            Contacter</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button"
+                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-white/10 focus:outline-none"
+                        aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-[20%] left-[10%] w-96 h-96 bg-primary-light/20 rounded-full blur-[100px]"></div>
+            <div class="absolute bottom-[20%] right-[10%] w-96 h-96 bg-accent-purple/20 rounded-full blur-[100px]">
+            </div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6">
+                <span
+                    class="block text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent-purple">Intelligence
+                    Artificielle</span>
+                <span class="block mt-2">& Santé de Demain</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400">
+                Transformez vos données médicales en intelligence actionnable avec l'IA Générative et la Computer
+                Vision.
+            </p>
+            <div class="mt-10 flex justify-center gap-4">
+                <a href="#contact"
+                    class="px-8 py-3 rounded-full bg-gradient-to-r from-secondary to-accent-purple text-white font-semibold hover:shadow-lg hover:shadow-secondary/25 transition-all">
+                    Discutons de votre projet
+                </a>
+                <a href="#expertise"
+                    class="px-8 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all backdrop-blur-sm">
+                    Découvrir mon expertise
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sections Placeholder -->
+    <section id="about" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center fade-up"><span class="text-secondary">01.</span>
+                À Propos de Moi</h2>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-up">
+                    <p class="text-lg text-gray-300 leading-relaxed mb-6">
+                        Je suis <strong class="text-white">Saindou</strong>, ingénieur IA indépendant passionné par
+                        l'intersection entre <span class="text-secondary">intelligence artificielle</span> et <span
+                            class="text-accent-green">santé</span>.
+                    </p>
+                    <p class="text-lg text-gray-300 leading-relaxed mb-6">
+                        Avec plus de <strong class="text-white">2 ans d'expérience</strong> en IA générative et une
+                        expertise pointue en Computer Vision, je conçois des solutions intelligentes qui transforment
+                        les pratiques médicales et améliorent les décisions cliniques.
+                    </p>
+                    <p class="text-lg text-gray-300 leading-relaxed">
+                        Actuellement en Master 2 IA Santé, je combine recherche académique et expertise pratique pour
+                        livrer des projets innovants, sécurisés et conformes aux exigences RGPD.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 fade-up delay-100">
+                    <div class="glass-card p-6 rounded-2xl text-center">
+                        <div class="text-4xl font-bold text-secondary mb-2">2+</div>
+                        <div class="text-sm text-gray-400">Années d'Expérience</div>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl text-center">
+                        <div class="text-4xl font-bold text-accent-purple mb-2">15+</div>
+                        <div class="text-sm text-gray-400">Projets Livrés</div>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl text-center">
+                        <div class="text-4xl font-bold text-accent-green mb-2">3</div>
+                        <div class="text-sm text-gray-400">Expertises Clés</div>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl text-center">
+                        <div class="text-4xl font-bold text-white mb-2">100%</div>
+                        <div class="text-sm text-gray-400">Orienté Résultats</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="expertise" class="py-24 bg-dark-surface/30 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center fade-up"><span class="text-secondary">02.</span>
+                Domaines d'Expertise</h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- IA Générative -->
+                <div class="glass-card p-8 rounded-3xl fade-up group">
+                    <div
+                        class="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">IA Générative & LLMs</h3>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Chatbots médicaux
+                            intelligents (RAG)</li>
+                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Fine-tuning (Llama,
+                            Mistral)</li>
+                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Génération rapports
+                            cliniques</li>
+                    </ul>
+                </div>
+
+                <!-- Computer Vision -->
+                <div class="glass-card p-8 rounded-3xl fade-up delay-100 group">
+                    <div
+                        class="w-14 h-14 bg-purple-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-accent-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Computer Vision Médicale</h3>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Détection pathologies
+                            (YOLO)</li>
+                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Segmentation d'organes
+                            (U-Net)</li>
+                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Analyse microscopique
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- ML Santé -->
+                <div class="glass-card p-8 rounded-3xl fade-up delay-200 group">
+                    <div
+                        class="w-14 h-14 bg-green-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-accent-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Machine Learning Santé</h3>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Modèles prédictifs
+                            (Risques)</li>
+                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Scoring patients</li>
+                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Analyse registres
+                            médicaux</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center fade-up"><span class="text-secondary">03.</span>
+                Services Proposés</h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Conseil & Audit -->
+                <div class="glass-card p-8 rounded-3xl fade-up border-t-4 border-t-blue-500">
+                    <h3 class="text-2xl font-bold mb-4">Conseil & Audit IA</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Expertise stratégique pour valider vos projets IA santé et
+                        assurer leur conformité.</p>
+                    <ul class="space-y-3 mb-8 text-sm">
+                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>Étude de faisabilité</li>
+                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>Audit qualité données</li>
+                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>Conformité RGPD/Santé</li>
+                    </ul>
+                    <a href="#contact"
+                        class="block w-full py-3 text-center rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10">Sur
+                        Devis</a>
+                </div>
+
+                <!-- Développement -->
+                <div
+                    class="glass-card p-8 rounded-3xl fade-up delay-100 border-t-4 border-t-purple-500 relative transform md:-translate-y-4">
+                    <div
+                        class="absolute top-0 right-0 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-3xl">
+                        POPULAIRE</div>
+                    <h3 class="text-2xl font-bold mb-4">Développement Sur Mesure</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Création de bout en bout de solutions IA robustes et
+                        scalables.</p>
+                    <ul class="space-y-3 mb-8 text-sm">
+                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>Chatbots RAG & LLMs</li>
+                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>Pipelines Computer Vision</li>
+                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>Déploiement Cloud Sécurisé</li>
+                    </ul>
+                    <a href="#contact"
+                        class="block w-full py-3 text-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all">Demander
+                        un Devis</a>
+                </div>
+
+                <!-- Recherche -->
+                <div class="glass-card p-8 rounded-3xl fade-up delay-200 border-t-4 border-t-cyan-500">
+                    <h3 class="text-2xl font-bold mb-4">R&D & Prototypage</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Expérimentation et validation de concepts innovants (POC).</p>
+                    <ul class="space-y-3 mb-8 text-sm">
+                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>Proof of Concept (POC)</li>
+                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>Modèles Expérimentaux</li>
+                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>State-of-the-Art Review</li>
+                    </ul>
+                    <a href="#contact"
+                        class="block w-full py-3 text-center rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10">Me
+                        Consulter</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 bg-dark-surface/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center fade-up"><span class="text-secondary">04.</span>
+                Projets Réalisés</h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="group relative rounded-3xl overflow-hidden bg-dark-bg border border-white/5 fade-up">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10">
+                    </div>
+                    <!-- Placeholder for project image or abstract generative art -->
+                    <div
+                        class="h-64 bg-gradient-to-br from-blue-900/40 to-slate-900 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                        <span class="text-6xl">💬</span>
+                    </div>
+                    <div class="relative z-20 p-8">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 rounded-full text-xs font-mono bg-blue-500/20 text-blue-300 border border-blue-500/30">RAG</span>
+                            <span
+                                class="px-3 py-1 rounded-full text-xs font-mono bg-green-500/20 text-green-300 border border-green-500/30">GPT-4</span>
+                            <span
+                                class="px-3 py-1 rounded-full text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">FastAPI</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2 group-hover:text-secondary transition-colors">Chatbot Médical
+                            Multilingue</h3>
+                        <p class="text-gray-400 mb-4 line-clamp-3">Développement d'un assistant conversationnel
+                            intelligent pour Orbicall, intégrant RAG pour répondre aux leads santé avec précision
+                            médicale multilingue.</p>
+                        <a href="#contact"
+                            class="inline-flex items-center text-sm font-semibold text-secondary hover:text-white transition-colors">
+                            Voir Étude de Cas <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div
+                    class="group relative rounded-3xl overflow-hidden bg-dark-bg border border-white/5 fade-up delay-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10">
+                    </div>
+                    <div
+                        class="h-64 bg-gradient-to-br from-red-900/40 to-slate-900 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                        <span class="text-6xl">🔥</span>
+                    </div>
+                    <div class="relative z-20 p-8">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 rounded-full text-xs font-mono bg-orange-500/20 text-orange-300 border border-orange-500/30">Computer
+                                Vision</span>
+                            <span
+                                class="px-3 py-1 rounded-full text-xs font-mono bg-yellow-500/20 text-yellow-300 border border-yellow-500/30">YOLO</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2 group-hover:text-secondary transition-colors">Détection
+                            Incendie IA</h3>
+                        <p class="text-gray-400 mb-4 line-clamp-3">Système de surveillance temps réel pour Majal
+                            Berkane, capable de détecter les départs de feu avec une latence < 100ms.</p>
+                                <a href="#contact"
+                                    class="inline-flex items-center text-sm font-semibold text-secondary hover:text-white transition-colors">
+                                    Voir Étude de Cas <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="group relative rounded-3xl overflow-hidden bg-dark-bg border border-white/5 fade-up">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10">
+                    </div>
+                    <div
+                        class="h-64 bg-gradient-to-br from-indigo-900/40 to-slate-900 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                        <span class="text-6xl">🫁</span>
+                    </div>
+                    <div class="relative z-20 p-8">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 rounded-full text-xs font-mono bg-blue-500/20 text-blue-300 border border-blue-500/30">Deep
+                                Learning</span>
+                            <span
+                                class="px-3 py-1 rounded-full text-xs font-mono bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Santé</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2 group-hover:text-secondary transition-colors">Prédiction
+                            Embolie Pulmonaire</h3>
+                        <p class="text-gray-400 mb-4 line-clamp-3">Modèle prédictif de saignement sur le registre RIETE,
+                            aidant les cliniciens à stratifier les risques patients avec précision.</p>
+                        <a href="#contact"
+                            class="inline-flex items-center text-sm font-semibold text-secondary hover:text-white transition-colors">
+                            Voir Étude de Cas <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div
+                    class="group relative rounded-3xl overflow-hidden bg-dark-bg border border-white/5 fade-up delay-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10">
+                    </div>
+                    <div
+                        class="h-64 bg-gradient-to-br from-pink-900/40 to-slate-900 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                        <span class="text-6xl">🏡</span>
+                    </div>
+                    <div class="relative z-20 p-8">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 rounded-full text-xs font-mono bg-pink-500/20 text-pink-300 border border-pink-500/30">Generative
+                                AI</span>
+                            <span
+                                class="px-3 py-1 rounded-full text-xs font-mono bg-violet-500/20 text-violet-300 border border-violet-500/30">Diffusion</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2 group-hover:text-secondary transition-colors">Virtual
+                            Homestaging</h3>
+                        <p class="text-gray-400 mb-4 line-clamp-3">Solution de génération d'images photoréalistes pour
+                            l'immobilier, transformant des pièces vides en espaces aménagés.</p>
+                        <a href="#contact"
+                            class="inline-flex items-center text-sm font-semibold text-secondary hover:text-white transition-colors">
+                            Voir Étude de Cas <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center fade-up">
+                <a href="https://github.com/MOUDATHIROU"
+                    class="px-8 py-4 rounded-full border border-white/10 hover:bg-white/5 transition-all text-sm font-medium tracking-wide">
+                    VOIR TOUS LES PROJETS GITHUB ->
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tech-stack" class="py-16 relative overflow-hidden border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-2xl font-bold mb-12 text-gray-400 fade-up">Technologies Maîtrisées</h2>
+            <div class="flex flex-wrap justify-center gap-8 fade-up opacity-80">
+                <!-- Logos/Tags (Text representation for now, images would be better) -->
+                <span
+                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">Python</span>
+                <span
+                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">PyTorch</span>
+                <span
+                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">TensorFlow</span>
+                <span
+                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">FastAPI</span>
+                <span
+                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">LangChain</span>
+                <span
+                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">Docker</span>
+                <span
+                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">OpenCV</span>
+                <span
+                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">YOLO</span>
+                <span
+                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">GPT-4</span>
+                <span
+                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">Claude</span>
+                <span
+                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">PostgreSQL</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-24 bg-dark-bg relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center fade-up"><span class="text-secondary">05.</span>
+                Processus & Valeurs</h2>
+
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- Timeline -->
+                <div class="fade-up">
+                    <h3 class="text-2xl font-bold mb-8">Ma Méthode de Travail</h3>
+                    <div class="space-y-8 border-l-2 border-white/10 ml-4 pl-8 relative">
+                        <div class="relative">
+                            <div
+                                class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-secondary border-4 border-dark-bg">
+                            </div>
+                            <h4 class="text-lg font-bold text-white">1. Découverte (30 min)</h4>
+                            <p class="text-gray-400 text-sm">Analyse de vos besoins et de la faisabilité.</p>
+                        </div>
+                        <div class="relative">
+                            <div
+                                class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-white/20 border-4 border-dark-bg">
+                            </div>
+                            <h4 class="text-lg font-bold text-white">2. Proposition & Devis</h4>
+                            <p class="text-gray-400 text-sm">Plan détaillé, stack technique et timeline.</p>
+                        </div>
+                        <div class="relative">
+                            <div
+                                class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-white/20 border-4 border-dark-bg">
+                            </div>
+                            <h4 class="text-lg font-bold text-white">3. Développement Agile</h4>
+                            <p class="text-gray-400 text-sm">Sprints, démos régulières et ajustements.</p>
+                        </div>
+                        <div class="relative">
+                            <div
+                                class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-accent-green border-4 border-dark-bg">
+                            </div>
+                            <h4 class="text-lg font-bold text-white">4. Livraison & Support</h4>
+                            <p class="text-gray-400 text-sm">Déploiement, documentation et garantie.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why Me -->
+                <div class="fade-up delay-100">
+                    <h3 class="text-2xl font-bold mb-8">Pourquoi Me Choisir ?</h3>
+                    <div class="grid gap-4">
+                        <div class="p-6 rounded-2xl bg-white/5 border border-white/5">
+                            <h4 class="text-lg font-bold text-white mb-2">Double Expertise</h4>
+                            <p class="text-gray-400 text-sm">Ingénieur IA & Master Santé : je comprends vos données
+                                cliniques.</p>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-white/5 border border-white/5">
+                            <h4 class="text-lg font-bold text-white mb-2">Conformité & Sécurité</h4>
+                            <p class="text-gray-400 text-sm">Sensibilisé RGPD, sécurité des données et éthique IA.</p>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-white/5 border border-white/5">
+                            <h4 class="text-lg font-bold text-white mb-2">Technologie de Pointe</h4>
+                            <p class="text-gray-400 text-sm">Utilisation des derniers modèles SOTA (Outils IA 2025+).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 relative overflow-hidden">
+        <div
+            class="absolute top-[20%] left-[50%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[120px] -translate-x-1/2 pointer-events-none">
+        </div>
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center fade-up"><span class="text-secondary">06.</span>
+                Me Contacter</h2>
+            <p class="text-center text-gray-400 mb-12 fade-up">Prêt à transformer vos données en intelligence ?
+                Discutons de votre projet.</p>
+
+            <form id="contact-form"
+                class="glass-card p-8 md:p-10 rounded-3xl fade-up border-t border-white/10 shadow-2xl">
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-400 mb-2">Nom Complet</label>
+                        <input type="text" id="name" name="name" required
+                            class="w-full bg-dark-bg/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
+                            placeholder="Votre nom">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email
+                            Professionnel</label>
+                        <input type="email" id="email" name="email" required
+                            class="w-full bg-dark-bg/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
+                            placeholder="email@entreprise.com">
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label for="type" class="block text-sm font-medium text-gray-400 mb-2">Type de Projet</label>
+                    <select id="type" name="type"
+                        class="w-full bg-dark-bg/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors appearance-none">
+                        <option value="Generative AI">IA Générative / LLM</option>
+                        <option value="Computer Vision">Computer Vision</option>
+                        <option value="Machine Learning">Machine Learning Prédictif</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                </div>
+
+                <div class="mb-6">
+                    <label for="message" class="block text-sm font-medium text-gray-400 mb-2">Description du
+                        Projet</label>
+                    <textarea id="message" name="message" rows="4" required
+                        class="w-full bg-dark-bg/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
+                        placeholder="Dites-m'en plus sur votre besoin..."></textarea>
+                </div>
+
+                <button type="submit"
+                    class="w-full py-4 rounded-xl bg-gradient-to-r from-secondary to-accent-purple text-white font-bold text-lg hover:shadow-lg hover:shadow-secondary/25 transition-all transform hover:-translate-y-0.5">
+                    Envoyer ma Demande
+                </button>
+                <p class="text-xs text-center text-gray-500 mt-4">En envoyant ce formulaire, vous acceptez d'être
+                    recontacté. Vos données restent confidentielles.</p>
+            </form>
+
+            <div class="mt-16 border-t border-white/5 pt-8 text-center fade-up">
+                <a href="mailto:kymsaindou@gmail.com"
+                    class="text-xl font-mono text-secondary hover:text-white transition-colors">kymsaindou@gmail.com</a>
+                <p class="text-gray-500 mt-2">+33 7 80 77 28 67 • Besançon, France</p>
+                <div class="flex justify-center gap-6 mt-6">
+                    <a href="https://github.com/MOUDATHIROU" target="_blank"
+                        class="text-gray-400 hover:text-white transition-colors">GitHub</a>
+                    <a href="https://linkedin.com/in/saindou-moudathirou-ben" target="_blank"
+                        class="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 border-t border-white/5 text-center text-gray-500 text-sm">
+        <p>&copy; 2026 Saindou Moudathirou Ben. All rights reserved.</p>
+    </footer>
+
+    <script src="./src/main.js"></script>
+</body>
+
+</html>
