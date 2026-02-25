@@ -696,7 +696,7 @@
                         submitBtn.style.opacity = '0.7';
                     }
 
-                    fetch(getApiUrl(), {
+                    /*fetch(getApiUrl(), {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(data)
@@ -744,7 +744,63 @@
                             }
                         });
                 }, true);
-            })();
+            })();*/
+                    fetch(getApiUrl(), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(function (response) {
+            // Vérifier le type de contenu de la réponse
+            var contentType = response.headers.get("content-type");
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                return response.json().then(function (result) {
+                    return { ok: response.ok, data: result, isJson: true };
+                });
+            } else {
+                // Si ce n'est pas du JSON (ex: Erreur 500 de Vercel)
+                return response.text().then(function (text) {
+                    return { ok: response.ok, data: text, isJson: false };
+                });
+            }
+        })
+        .then(function (res) {
+            if (res.ok && res.isJson) {
+                // Succès normal
+                var successMsg = document.getElementById('form-success-msg');
+                if (!successMsg) {
+                    successMsg = document.createElement('div');
+                    successMsg.id = 'form-success-msg';
+                    successMsg.style.cssText = 'background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.4);border-radius:12px;padding:16px;margin-top:16px;color:#34d399;text-align:center;font-weight:600;';
+                    form.appendChild(successMsg);
+                }
+                successMsg.textContent = res.data.message || 'Message envoyé avec succès ! Je vous répondrai sous 24h.';
+                form.reset();
+            } else if (!res.ok) {
+                // Gestion des erreurs (JSON ou Texte)
+                if (res.isJson && res.data.detail) {
+                    // Erreur gérée par FastAPI (ex: 422 Unprocessable Entity)
+                    var detail = res.data.detail;
+                    var errorMsg = Array.isArray(detail) ? detail.map(function(e){return e.msg}).join(', ') : detail;
+                    alert('Erreur : ' + errorMsg);
+                } else {
+                    // Erreur critique du serveur (ex: 500)
+                    console.error("Erreur serveur brute:", res.data);
+                    alert("Une erreur interne du serveur est survenue. Veuillez réessayer plus tard.");
+                }
+            }
+        })
+        .catch(function (err) {
+            console.error('Erreur réseau:', err);
+            alert('Impossible de joindre le serveur. Contactez-moi directement à kymsaindou@gmail.com');
+        })
+        .finally(function () {
+            if (submitBtn) {
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+            }
+        });
     </script>
 </body>
 
