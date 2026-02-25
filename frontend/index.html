@@ -675,11 +675,7 @@
 
                 // Détecter l'URL de l'API : si servi par FastAPI => relatif, sinon URL absolue du backend
                 function getApiUrl() {
-                    var hostname = window.location.hostname;
-                    // Si on est sur GitHub Pages ou un domaine statique sans backend
-                    if (hostname.includes('github.io') || hostname.includes('vercel.app')) {
-                        return 'https://moudathirou.com/api/contact';
-                    }
+                   
                     // En local ou sur le même serveur FastAPI
                     return '/api/contact';
                 }
