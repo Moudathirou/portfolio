@@ -7,8 +7,12 @@ from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from backend.models import ContactSchema
 from backend.utils import send_contact_email
+from dotenv import load_dotenv
 import uvicorn
 import os
+
+# Charger les variables d'environnement depuis .env
+load_dotenv()
 
 # Rate Limiter Setup
 limiter = Limiter(key_func=get_remote_address)
@@ -22,18 +26,10 @@ app = FastAPI(
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-# CORS - Important pour Vercel
+# CORS - Autorise le frontend (GitHub Pages + local)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # En prod: ton domaine Vercel
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
