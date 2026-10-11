@@ -31,7 +31,7 @@ Parcours réel, à présenter avec son secteur d'origine (ne jamais tout requali
 ## Capabilities and Constraints
 - Offres : RAG / assistant documentaire (y compris 100 % local), systèmes agentiques, automatisation de veille et qualification documentaire, intégration IA dans des applications existantes, ML / computer vision de bout en bout, audit de systèmes LLM.
 - Stack existante : page statique (HTML/CSS/JS + GSAP) servie par Vercel, API FastAPI `/api/contact` (envoi SMTP).
-- Mentions légales : statut et SIRET **non fournis** — emplacement à compléter.
+- Mentions légales : entrepreneur individuel (micro-entreprise), SIREN 994 924 181, SIRET 994 924 181 00013, inscrit au RNE, APE 62.01Z.
 
 ## Brand Commitments
 - Nom affiché : Saindou Moudathirou Ben. Favicon existant : `logo.png` (portrait mi-humain mi-circuit).
