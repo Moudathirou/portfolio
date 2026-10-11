@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-11T12:00:00Z",
+  "title": "Design System: Saindou Moudathirou Ben — Ingénieur IA",
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Cool Squared Paper", "canonical": "#F2F4F0", "tonalRamp": ["#262824", "#3E413B", "#5A5D56", "#7A7D75", "#9DA098", "#C2C5BD", "#E2E5DF", "#F2F4F0"] },
+      "paper-slip": { "role": "neutral", "displayName": "Fresh Print", "canonical": "#FCFDFB", "tonalRamp": ["#282927", "#40413E", "#5C5D5A", "#7C7D7A", "#A0A19D", "#C6C7C4", "#E8E9E6", "#FCFDFB"] },
+      "grid": { "role": "neutral", "displayName": "Grid Line", "canonical": "rgba(45, 93, 168, 0.075)" },
+      "ink": { "role": "neutral", "displayName": "Notebook Ink", "canonical": "#1C2A3A", "tonalRamp": ["#0E1620", "#1C2A3A", "#2E3F52", "#46586C", "#66778A", "#8C9AAA", "#B8C2CD", "#E3E8ED"] },
+      "ink-2": { "role": "neutral", "displayName": "Faded Ink", "canonical": "#4A5866", "tonalRamp": ["#1A2129", "#2C3640", "#3C4855", "#4A5866", "#6A7784", "#8E99A4", "#B7BFC7", "#E1E5E9"] },
+      "pen": { "role": "primary", "displayName": "Ballpoint Blue", "canonical": "#2D5DA8", "tonalRamp": ["#0F1F3A", "#1A3460", "#234C8C", "#2D5DA8", "#4F7CC4", "#7FA1D6", "#B3C7E8", "#E3EBF7"] },
+      "pen-strong": { "role": "primary", "displayName": "Pressed Ballpoint", "canonical": "#234C8C", "tonalRamp": ["#0C1A31", "#152C52", "#1D3E72", "#234C8C", "#4469A8", "#7591C4", "#AABEDF", "#DFE7F3"] },
+      "pen-wash": { "role": "primary", "displayName": "Blue Wash", "canonical": "rgba(45, 93, 168, 0.17)" },
+      "margin-red": { "role": "secondary", "displayName": "Margin Red", "canonical": "#B23A2E", "tonalRamp": ["#3A120E", "#5E1D17", "#882B22", "#B23A2E", "#CD5E52", "#DE8C83", "#EDBDB7", "#F9E6E4"] },
+      "rule": { "role": "neutral", "displayName": "Pencil Rule", "canonical": "#C5CFD0", "tonalRamp": ["#2A3132", "#434C4D", "#606A6B", "#808B8C", "#A2ADAE", "#C5CFD0", "#E0E6E7", "#F3F6F6"] },
+      "rule-strong": { "role": "neutral", "displayName": "Graphite Rule", "canonical": "#8F9DA6", "tonalRamp": ["#232A2F", "#3A444B", "#55626B", "#728089", "#8F9DA6", "#B0BBC2", "#D2D9DD", "#EEF1F3"] },
+      "tape": { "role": "neutral", "displayName": "Tape", "canonical": "rgba(214, 205, 158, 0.6)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The name in the hero; one per page. Archivo at 70% width." },
+      "headline": { "displayName": "Headline", "purpose": "Section h2s at 76% width." },
+      "title-lg": { "displayName": "Title Large", "purpose": "Case-study titles, hero role line, lead ledger row." },
+      "title": { "displayName": "Title", "purpose": "Ledger rows, protocol steps, timeline entries, inventory terms." },
+      "body": { "displayName": "Body", "purpose": "Reading text at 60-68ch; intros step up to 1.125rem." },
+      "label": { "displayName": "Label", "purpose": "Sentence-case field labels, captions, source references, table heads in ink-2." },
+      "small": { "displayName": "Small", "purpose": "Tools lists, help text, tabs and filters." },
+      "hand": { "displayName": "Hand (Caveat)", "purpose": "Margin notes, proof links, margin dates, audit marks, signature. Never headings or controls." }
+    },
+    "shadows": [
+      { "name": "slip", "value": "0 1px 1px rgba(28, 42, 58, 0.06), 0 14px 30px -16px rgba(28, 42, 58, 0.38)", "purpose": "Taped-in printouts only." },
+      { "name": "tape", "value": "0 1px 1px rgba(28, 42, 58, 0.08)", "purpose": "Tape strips on slips." },
+      { "name": "masthead-scrolled", "value": "0 10px 24px -20px rgba(28, 42, 58, 0.6)", "purpose": "Sticky header after scroll." },
+      { "name": "primary-press", "value": "0 1px 0 rgba(28, 42, 58, 0.2), 0 8px 18px -12px rgba(35, 76, 140, 0.8)", "purpose": "Primary button." },
+      { "name": "focus-halo", "value": "0 0 0 3px rgba(45, 93, 168, 0.17)", "purpose": "Focused inputs and the status dot." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "All CSS state transitions (0.2s colour/border, 0.12s press, 0.25-0.35s disclosure)." },
+      { "name": "demo-timeline", "value": "GSAP expo.out", "purpose": "Demo sequence: words fade up 4px, citations scale in, wash highlight sweeps via --hl, stamp lands from scale 1.35 / -12deg. Skipped under reduced motion." },
+      { "name": "unfold", "value": "opacity 0 -> 1, translateY(-6px) -> 0, 0.35s ease-out", "purpose": "Opening details disclosures." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "protocol-2", "value": "700px" },
+      { "name": "inventory", "value": "800px" },
+      { "name": "nav", "value": "900px" },
+      { "name": "ledger", "value": "960px" },
+      { "name": "hero", "value": "1000px" },
+      { "name": "wide", "value": "1100px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one main action per region, in pen blue.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Parler de votre projet</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0.75rem 1.35rem; border: 1px solid transparent; border-radius: 3px; background: #2D5DA8; color: #FCFDFB; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 650; font-size: 1rem; text-decoration: none; box-shadow: 0 1px 0 rgba(28,42,58,0.2), 0 8px 18px -12px rgba(35,76,140,0.8); transition: background-color 0.2s cubic-bezier(0.16,1,0.3,1), transform 0.12s cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary:hover { background: #234C8C; } .ds-btn-primary:active { transform: translateY(1px); } .ds-btn-primary:focus-visible { outline: 2px solid #2D5DA8; outline-offset: 3px; }"
+    },
+    {
+      "name": "Link Button",
+      "kind": "button",
+      "refersTo": "button-link",
+      "description": "Secondary action beside the primary; underlined pen text.",
+      "html": "<a class=\"ds-btn-link\" href=\"#\">Voir les résultats</a>",
+      "css": ".ds-btn-link { display: inline-flex; align-items: center; min-height: 44px; padding: 0.5rem 0.25rem; color: #2D5DA8; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 650; font-size: 1rem; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em; } .ds-btn-link:hover { color: #234C8C; text-decoration-thickness: 2px; } .ds-btn-link:focus-visible { outline: 2px solid #2D5DA8; outline-offset: 3px; border-radius: 2px; }"
+    },
+    {
+      "name": "Tab / Filter",
+      "kind": "chip",
+      "refersTo": "tab",
+      "description": "Outlined graphite chip; selected state inverts to ink.",
+      "html": "<div class=\"ds-tabs\"><button class=\"ds-tab\" aria-selected=\"true\">Interroger un protocole</button><button class=\"ds-tab\" aria-selected=\"false\">Qualifier un appel d'offres</button></div>",
+      "css": ".ds-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; } .ds-tab { min-height: 40px; padding: 0.45rem 0.7rem; border: 1px solid #8F9DA6; border-radius: 3px; background: transparent; color: #1C2A3A; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-size: 0.875rem; font-weight: 600; font-stretch: 82%; cursor: pointer; transition: background-color 0.2s cubic-bezier(0.16,1,0.3,1), border-color 0.2s cubic-bezier(0.16,1,0.3,1), color 0.2s cubic-bezier(0.16,1,0.3,1); } .ds-tab:hover { border-color: #1C2A3A; background: rgba(28,42,58,0.04); } .ds-tab[aria-selected=\"true\"] { background: #1C2A3A; border-color: #1C2A3A; color: #FCFDFB; } .ds-tab:focus-visible { outline: 2px solid #2D5DA8; outline-offset: 3px; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Fresh-print field with a writing-line bottom edge; pen focus with wash halo.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-email\">Adresse e-mail</label><input id=\"ds-email\" class=\"ds-input\" type=\"email\" placeholder=\"vous@exemple.fr\"></div>",
+      "css": ".ds-field label { display: block; margin-bottom: 0.35rem; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 650; font-size: 0.9375rem; color: #1C2A3A; } .ds-input { width: 100%; min-height: 48px; padding: 0.65rem 0.75rem; border: 1px solid #8F9DA6; border-bottom: 2px solid #4A5866; border-radius: 2px; background: #FCFDFB; color: #1C2A3A; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-size: 1rem; transition: border-color 0.2s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s cubic-bezier(0.16,1,0.3,1); } .ds-input:hover { border-color: #4A5866; } .ds-input:focus-visible { outline: none; border-color: #2D5DA8; box-shadow: 0 0 0 3px rgba(45,93,168,0.17); } .ds-input[aria-invalid=\"true\"] { border-color: #B23A2E; }"
+    },
+    {
+      "name": "Masthead Navigation",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Printed notebook header: labelled fields left, ink links and outlined pen CTA right.",
+      "html": "<header class=\"ds-masthead\"><a class=\"ds-mh-field\" href=\"#\"><span class=\"ds-mh-label\">Titulaire</span><span class=\"ds-mh-name\">S. Moudathirou Ben</span></a><nav><ul class=\"ds-nav\"><li><a href=\"#\">Offres</a></li><li><a href=\"#\">Résultats</a></li><li><a class=\"ds-nav-cta\" href=\"#\">Parler de votre projet</a></li></ul></nav></header>",
+      "css": ".ds-masthead { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 64px; padding: 0 2rem; background: #F2F4F0; border-bottom: 1px solid #1C2A3A; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; } .ds-mh-field { display: flex; flex-direction: column; line-height: 1.2; color: #1C2A3A; text-decoration: none; } .ds-mh-label { font-size: 0.6875rem; font-weight: 600; font-stretch: 85%; color: #4A5866; } .ds-mh-name { font-size: 1.125rem; font-weight: 800; font-stretch: 75%; } .ds-nav { display: flex; align-items: center; gap: 1.5rem; list-style: none; margin: 0; padding: 0; } .ds-nav a { color: #1C2A3A; font-weight: 600; font-size: 0.9375rem; text-decoration: none; } .ds-nav a:hover { color: #2D5DA8; text-decoration: underline; } .ds-nav .ds-nav-cta { color: #2D5DA8; padding: 0.55rem 0.9rem; border: 1px solid #2D5DA8; border-radius: 3px; } .ds-nav .ds-nav-cta:hover { background: rgba(45,93,168,0.17); text-decoration: none; } .ds-nav a:focus-visible { outline: 2px solid #2D5DA8; outline-offset: 3px; }"
+    },
+    {
+      "name": "Taped Slip",
+      "kind": "card",
+      "refersTo": "slip",
+      "description": "Evidence printed out and taped onto the page; the only lifted container.",
+      "html": "<figure class=\"ds-slip\"><figcaption class=\"ds-slip-cap\">Fiche d'alerte, reconstituée (fictive)</figcaption><p>Avis de sécurité du 03/07/2026 <span class=\"ds-cite\">[1]</span></p></figure>",
+      "css": ".ds-slip { position: relative; margin: 1.5rem 0 0; padding: 2rem; max-width: 30rem; background: #FCFDFB; border: 1px solid rgba(28,42,58,0.09); border-radius: 2px; box-shadow: 0 1px 1px rgba(28,42,58,0.06), 0 14px 30px -16px rgba(28,42,58,0.38); font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; color: #1C2A3A; transform: rotate(-0.6deg); } .ds-slip::before, .ds-slip::after { content: ''; position: absolute; top: -11px; width: 88px; height: 22px; background: rgba(214,205,158,0.6); box-shadow: 0 1px 1px rgba(28,42,58,0.08); } .ds-slip::before { left: 22px; transform: rotate(-4deg); } .ds-slip::after { right: 26px; transform: rotate(5deg); } .ds-slip-cap { font-size: 0.8125rem; font-weight: 600; color: #4A5866; margin-bottom: 0.5rem; } .ds-cite { color: #2D5DA8; font-weight: 750; font-size: 0.8em; vertical-align: 0.3em; line-height: 1; font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Verification Stamp",
+      "kind": "custom",
+      "refersTo": "stamp",
+      "description": "Red rubber stamp that lands on verified evidence.",
+      "html": "<p class=\"ds-stamp\"><span class=\"ds-stamp-word\">Vérifié</span><span class=\"ds-stamp-detail\">2/2 citations à la source</span></p>",
+      "css": ".ds-stamp { display: inline-flex; flex-direction: column; align-items: center; padding: 0.35rem 0.9rem 0.45rem; border: 2px solid #B23A2E; border-radius: 5px; color: #B23A2E; transform: rotate(-6deg); mix-blend-mode: multiply; line-height: 1.1; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; } .ds-stamp-word { font-weight: 850; font-stretch: 72%; font-size: 1.5rem; letter-spacing: 0.03em; } .ds-stamp-detail { font-size: 0.75rem; font-weight: 650; }"
+    },
+    {
+      "name": "Quoted Source with Highlight",
+      "kind": "custom",
+      "refersTo": "source-box",
+      "description": "Dashed source box; cited passages highlighted with the blue wash.",
+      "html": "<div class=\"ds-source\"><p class=\"ds-source-ref\">Protocole NUT-042 (fictif), page 12</p><p class=\"ds-source-text\"><mark class=\"ds-mark\">(a) traitement hypolipémiant initié depuis moins de 3 mois ;</mark> (c) participation à une autre étude.</p></div>",
+      "css": ".ds-source { padding: 1rem; background: #F2F4F0; border: 1px dashed #8F9DA6; border-radius: 2px; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; color: #1C2A3A; } .ds-source-ref { margin: 0; font-size: 0.8125rem; font-weight: 600; font-stretch: 85%; color: #4A5866; } .ds-source-text { margin: 0.4rem 0 0; font-size: 0.96875rem; line-height: 1.65; } .ds-mark { color: inherit; background: linear-gradient(rgba(45,93,168,0.17), rgba(45,93,168,0.17)) no-repeat 0 70% / 100% 78%; padding: 0 0.1em; border-radius: 2px; transition: box-shadow 0.2s cubic-bezier(0.16,1,0.3,1); } .ds-mark:hover { box-shadow: inset 0 -2px 0 #2D5DA8; }"
+    },
+    {
+      "name": "Margin Note",
+      "kind": "custom",
+      "refersTo": "hand",
+      "description": "Handwritten pen annotation with a drawn arrow.",
+      "html": "<p class=\"ds-note\"><svg aria-hidden=\"true\" viewBox=\"0 0 40 24\" width=\"40\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M38 4C26 4 14 8 4 20\"/><path d=\"M4 12v8h8\"/></svg>Veille appels d'offres : en production en 8 jours.</p>",
+      "css": ".ds-note { display: flex; align-items: flex-end; gap: 0.5rem; font-family: Caveat, 'Segoe Print', cursive; font-size: 1.6rem; font-weight: 600; line-height: 1.1; color: #2D5DA8; transform: rotate(-1.5deg); transform-origin: left center; } .ds-note svg { flex: none; margin-bottom: 0.4rem; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Lab Notebook, Kept Clean",
+    "overview": "The site is a laboratory notebook kept with care: cool squared paper, a double red margin rule down the left, printed entries in dark ink, annotations in blue ballpoint, and evidence printed out and taped onto the page. Verification is not a claim in copy; it is a rubber stamp that lands on the evidence. Every visual device comes from that one physical world, and the world exists to make \"every claim traced to its source\" visible.\n\nDensity is that of a working document, not a showcase: ruled lists, definition rows, tables with provenance, and full-width ledgers instead of card grids. Hierarchy comes from Archivo's width axis (narrow, heavy print for headings, normal width for reading) and from ink colour (ink for content, blue pen for anything you act on or anything annotated, red only for margin, stamp, audit and error). Handwriting (Caveat) is reserved for the human hand: margin notes, proof links, the dates in the margin, and the signature.\n\nThe confirmed rejection is the dark AI portfolio of identical cards and violet gradients. The page stays light, paper-toned, and flat except where paper physically sits on paper.",
+    "keyCharacteristics": [
+      "Cool squared paper (24px grid) with a red double margin rule as the constant ground.",
+      "Archivo variable width does the hierarchy work: narrow and heavy for print headings, 100% for body.",
+      "Blue pen is the only interactive colour; red is reserved for margin, stamp, audit marks and errors.",
+      "Evidence is taped in: slips of brighter paper with tape strips and a soft drop shadow.",
+      "Lists are ruled ledgers and definition rows, never grids of identical cards.",
+      "Handwriting appears sparingly, always in pen blue or audit red, always slightly rotated."
+    ],
+    "rules": [
+      { "name": "The Two Inks Rule", "body": "Ink is for what you read; blue pen is for what you click or what was annotated by hand. A non-interactive element in pen blue must be a handwritten annotation or a numeral/date in the notebook's own voice.", "section": "colors" },
+      { "name": "The Red Margin Rule", "body": "Red belongs to the notebook's ruling and to verification: margin line, stamp, audit marks, errors. It never fills a surface or labels an action.", "section": "colors" },
+      { "name": "The Width-Not-Size Rule", "body": "Before adding a size step, narrow the width. Headings are 70–90% width and 720+ weight; body stays at 100%.", "section": "typography" },
+      { "name": "The Hand-Is-Rare Rule", "body": "Caveat is only for something a person would write in a notebook by hand: a note, a date in the margin, a proof pointer, a check mark, a signature. Never for headings, buttons, or body copy.", "section": "typography" },
+      { "name": "The Paper-On-Paper Rule", "body": "A shadow means an object taped onto the sheet. Content that is printed on the page itself (ledgers, cases, tables, timeline) gets rules, not shadows.", "section": "elevation" }
+    ],
+    "dos": [
+      "**Do** keep the squared paper (24px grid on `#F2F4F0`) and the red double margin rule on every page of the site.",
+      "**Do** express hierarchy with Archivo's width axis first (70–90% width, 720+ weight for headings), size second.",
+      "**Do** use pen blue for every interactive element and for handwritten annotation; use pressed ballpoint for hover.",
+      "**Do** present evidence as taped slips (fresh print, tape strips, slip shadow) and everything else as ruled entries.",
+      "**Do** cite with superscript pen numerals and highlight sources with the blue wash, as the demo does.",
+      "**Do** keep labels in sentence case at 0.8125rem, 600, 85% width, ink-2, attached to the field they label.",
+      "**Do** keep touch targets at 44px minimum and focus visible with the 2px pen outline.",
+      "**Do** honour reduced motion: transitions collapse, the demo shows its final verified state."
+    ],
+    "donts": [
+      "**Don't** build the dark AI portfolio: dark backgrounds, grids of identical cards, violet gradients.",
+      "**Don't** use margin red as a fill, a button, or a decorative accent; it is ruling, stamp, audit and error only.",
+      "**Don't** put shadows on content printed on the page; only taped objects and the scrolled masthead lift.",
+      "**Don't** set headings, buttons or paragraphs in Caveat.",
+      "**Don't** add uppercase tracked labels or eyebrow lines above section headings; section heads are a heading and an intro.",
+      "**Don't** use radii above 3px on controls or containers (the 5px stamp is the exception).",
+      "**Don't** draw icons with text glyphs or emoji; use stroked SVG at 1.5–2px in currentColor."
+    ]
+  }
+}

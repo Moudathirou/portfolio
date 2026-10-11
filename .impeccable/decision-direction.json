@@ -1,0 +1,130 @@
+{
+  "title": "Choisis l'univers visuel du site",
+  "question": "Le tirage a attribué « Boîte & notice pharmaceutique ». Garde-la, prends une alternative, ou relance un tirage.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Boîte & notice pharmaceutique",
+      "kicker": "THE ROLL",
+      "lineage": "Boîte de médicament et notice pliée, l'information réglementée que tout le monde connaît",
+      "thesis": "Ton profil présenté comme un produit réglementé : chaque rubrique est claire, vérifiée et sourcée.",
+      "palette": ["#F6F7F4", "#17201E", "#0A6E6A", "#D9E8E5", "#C8372D"],
+      "materials": ["carton couché blanc", "bandeau couleur d'identité", "notice pliée en accordéon", "marquage LOT/EXP au jet d'encre", "nom embossé en Braille"],
+      "viewport": "Face avant de la boîte : ton nom en grand, « Ingénieur IA, du prototype à la production », bandeau sarcelle, mention « LOT 2026 · Disponible · Nantes + remote ». À droite, la notice dépliée sur « Dans quels cas m'appeler ? » avec la démo de réponse tracée.",
+      "risk": "Peut tourner au gadget si les rubriques deviennent des blagues : les titres restent en langage clair.",
+      "raised": [
+        {"from": "challenger-quilt", "raise": "Chaque chiffre porte sa ligne de provenance (ex. « source : Biofortis 2026, audit LLM-as-a-judge »)."},
+        {"from": "challenger-nixie", "raise": "Les mesures (100 000+, < 1 %, 8 jours) ont une forme chiffrée fixe en chiffres tabulaires, comme un dosage."},
+        {"from": "challenger-gyaru", "raise": "Les schémas d'architecture sont annotés avec des lignes de rappel : chaque bloc a sa légende."},
+        {"from": "challenger-specimen", "raise": "La hiérarchie vient du contraste d'échelle, sur une grille de ligne de base stricte."},
+        {"from": "challenger-azulejo", "raise": "La mise en page se cale sur des modules entiers, comme les volets pliés de la notice."}
+      ]
+    },
+    {
+      "id": "model-pick",
+      "label": "Document annoté : chaque affirmation a sa source",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Rapport d'étude surligné, citations et numéros de page",
+      "thesis": "Le site démontre ta signature : une réponse d'IA s'écrit, puis sa citation surligne le passage exact dans le document source.",
+      "palette": ["#EEF2F0", "#14211F", "#0E6E66", "#F2D94E", "#5B6B68"],
+      "materials": ["papier gris-vert froid", "encre vert profond", "surligneur jaune réservé aux preuves", "serif de document pour les extraits"],
+      "viewport": "À gauche, ton nom, ton titre et le bouton de contact. À droite, la démo réponse → citation → passage surligné, avec 3 onglets (protocole, appel d'offres, alerte réglementaire).",
+      "risk": "C'est la piste la plus familière : elle est proche du style éditorial que beaucoup de sites adoptent."
+    },
+    {
+      "id": "challenger-boarding",
+      "label": "Carte d'embarquement & tableau des départs",
+      "verdict": "competitive",
+      "lineage": "Carte d'embarquement segmentée et tableau des départs d'aéroport",
+      "thesis": "Ton profil en carte d'embarquement segmentée (statut, lieu, stack), tes projets dans un tableau des départs.",
+      "palette": ["#F4F4F2", "#111418", "#FFB000", "#2B2F36"],
+      "materials": ["segments étiquetés", "chiffres tabulaires", "une seule couleur d'alerte pour les changements"],
+      "viewport": "La carte occupe le haut : nom, « Disponible », « Nantes + remote », 6 offres en segments. En dessous, le tableau des projets classés par date.",
+      "case": "La fusion est nette : très lisible pour les ESN et les plateformes. En revanche, les clients santé ne s'y reconnaissent pas.",
+      "risk": "Le thème « voyage » paraît hors sujet si la métaphore prend le dessus.",
+      "hero": "https://impeccable.style/worlds/cards/vernacular-ephemera-boarding-pass-and-gate-board-hero.webp"
+    },
+    {
+      "id": "challenger-quilt",
+      "label": "Courtepointe de mémoire",
+      "verdict": "declined",
+      "lineage": "Patchwork de vêtements, chaque bloc avec son origine",
+      "thesis": "Chaque bloc relié à sa provenance par une couture visible.",
+      "palette": ["#7C93B0", "#1A1A1A", "#C8372D", "#6B4A2F"],
+      "materials": ["tissus usés", "point rouge"],
+      "viewport": "Une grille de blocs inégaux, chacun cousu à sa légende.",
+      "case": "La fusion est faible : ton public ne se reconnaît pas dans le textile domestique.",
+      "risk": "Ton intime, hors sujet pour du B2B.",
+      "kept": "Chaque affirmation porte sa provenance visible.",
+      "hero": "https://impeccable.style/worlds/cards/textiles-weave-drape-fashion-memory-quilt-atlas-hero.webp"
+    },
+    {
+      "id": "challenger-nixie",
+      "label": "Compteur à tubes Nixie",
+      "verdict": "declined",
+      "lineage": "Compteur de laboratoire à tubes lumineux",
+      "thesis": "Les quantités deviennent l'interface.",
+      "palette": ["#FF7A1A", "#141414", "#8A8F94"],
+      "materials": ["verre", "acier noirci"],
+      "viewport": "Des rangées de tubes affichant tes chiffres clés.",
+      "case": "La fusion est faible : ça ne montre que des chiffres, pas ce que tu fais.",
+      "risk": "Effet rétro gadget.",
+      "kept": "Chaque mesure a une forme chiffrée fixe.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-nixie-laboratory-counter-hero.webp"
+    },
+    {
+      "id": "challenger-gyaru",
+      "label": "Magazine de mode saturé",
+      "verdict": "declined",
+      "lineage": "Double page de magazine annotée à la main",
+      "thesis": "Chaque élément est légendé par une ligne de rappel.",
+      "palette": ["#FF4FA3", "#F2C14E", "#FFFFFF"],
+      "materials": ["paillettes", "découpes"],
+      "viewport": "Des figures superposées avec des étiquettes.",
+      "case": "La fusion est faible : le ton est incompatible avec la santé et le B2B.",
+      "risk": "Bruyant.",
+      "kept": "Annotation par lignes de rappel.",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-gyaru-magazine-density-hero.webp"
+    },
+    {
+      "id": "challenger-specimen",
+      "label": "Spécimen typographique",
+      "verdict": "declined",
+      "lineage": "Spécimen de fonderie à axes variables",
+      "thesis": "Une hiérarchie construite uniquement par l'échelle.",
+      "palette": ["#FAFAF8", "#0A0A0A", "#3B5BDB"],
+      "materials": ["papier", "encre"],
+      "viewport": "Une lettre géante pilotée par un curseur.",
+      "case": "La fusion est faible : le sujet devient la typographie, pas toi.",
+      "risk": "Hors sujet.",
+      "kept": "Contraste d'échelle et grille de ligne de base.",
+      "hero": "https://impeccable.style/worlds/cards/variable-font-specimen-hero.webp"
+    },
+    {
+      "id": "challenger-azulejo",
+      "label": "Hall d'azulejos",
+      "verdict": "declined",
+      "lineage": "Carreaux bleu cobalt d'une gare",
+      "thesis": "Un récit en panneaux, calé sur des carreaux entiers.",
+      "palette": ["#1F3F9A", "#F7F5EF", "#D9A62E"],
+      "materials": ["faïence", "joints"],
+      "viewport": "Une fresque cobalt en panneaux encadrés.",
+      "case": "La fusion est faible : décoratif, sans lien avec l'IA ni la santé.",
+      "risk": "Trop décoratif.",
+      "kept": "Mise en page par modules entiers.",
+      "hero": "https://impeccable.style/worlds/cards/architecture-places-azulejo-station-hall-hero.webp"
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code", "toggle": false },
+  "canon": true,
+  "canonCard": {
+    "label": "Le standard du secteur",
+    "thesis": "Le portfolio de développeur IA habituel, exécuté proprement.",
+    "palette": ["#0B1220", "#E5E7EB", "#38BDF8"],
+    "materials": ["grille nette", "cartes projets", "fond sombre"],
+    "viewport": "Une accroche centrée, des cartes de services et de projets, la stack puis le contact.",
+    "risk": "Impossible à distinguer des autres portfolios, par construction."
+  },
+  "steer": true
+}
