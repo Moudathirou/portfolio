@@ -11,7 +11,7 @@ Scope: page unique du portfolio freelance. Mode : Persuade.
 Audience : santé/medtech/CRO/pharma, PME et startups, ESN et plateformes, recherche et hôpitaux. Action : envoyer le formulaire « Parler de votre projet ».
 Preuves : démonstrations reconstituées (documents fictifs, signalés), métriques du CV avec leur provenance, schémas d'architecture génériques. Aucun code, capture, témoignage ou logo client.
 Contraintes : HTML/CSS/JS statique + GSAP core (cdnjs, SRI), CSP sans 'unsafe-inline', pas d'attribut style dans le HTML.
-Non résolu : statut juridique et SIRET (mentions légales à compléter).
+Mentions légales complétées (EI micro-entreprise, SIRET 994 924 181 00013).
 
 ## Direction contract
 THESIS: Le site est un cahier de laboratoire tenu proprement : entrées datées, preuves collées, vérification tamponnée. Il refuse le portfolio IA sombre aux cartes identiques et dégradés violets.
