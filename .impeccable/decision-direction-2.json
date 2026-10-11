@@ -1,0 +1,130 @@
+{
+  "title": "Choisis l'univers visuel du site (2e tirage)",
+  "question": "Nouveau tirage : « Signalétique d'hôpital ». Garde-la, prends une alternative, ou relance.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Signalétique d'hôpital",
+      "kicker": "THE ROLL",
+      "lineage": "Systèmes d'orientation hospitaliers : zones de couleur, pictogrammes, panneaux directionnels, « Vous êtes ici »",
+      "thesis": "Le visiteur trouve tout de suite le bon service : chaque offre est une zone codée, avec un pictogramme et une direction.",
+      "palette": ["#F3F4F1", "#0F2A44", "#00857C", "#E0A100", "#D2553F"],
+      "materials": ["panneaux émaillés", "zones de couleur pleines", "pictogrammes au trait", "grandes lettres de zone (A–F)", "flèches directionnelles"],
+      "viewport": "Un grand panneau d'accueil : ton nom et « Ingénieur IA, du prototype à la production » en tête, puis l'annuaire des 6 offres, chacune avec sa lettre, sa couleur et sa flèche. La pastille « Vous êtes ici · Disponible · Nantes + remote » et le bouton « Parler de votre projet » restent bien visibles.",
+      "risk": "Peut paraître institutionnel et froid : la chaleur vient des textes et de la démo à l'intérieur de chaque zone.",
+      "raised": [
+        {"from": "challenger-emission", "raise": "Les états ne passent jamais par la couleur seule : chaque zone a sa lettre et son pictogramme (accessibilité)."},
+        {"from": "challenger-kit", "raise": "Ton identité reste fixe quand le contexte change : le filtre par secteur change la couleur, jamais ton nom."},
+        {"from": "challenger-akari", "raise": "Les études de cas restent repliées en panneau sobre et s'ouvrent quand on les touche."},
+        {"from": "challenger-rain", "raise": "La démo de réponse tracée se rejoue à l'identique avec un bouton « Rejouer »."},
+        {"from": "challenger-scope", "raise": "Chaque chiffre est posé sur la même grille de mesure, avec des chiffres tabulaires."}
+      ]
+    },
+    {
+      "id": "model-pick",
+      "label": "Cahier de laboratoire",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Cahier de labo relié, pages numérotées, entrées datées et signées (bonnes pratiques GxP)",
+      "thesis": "Ton parcours et tes projets présentés comme des entrées datées, signées et traçables : la preuve par la méthode.",
+      "palette": ["#F2F4F0", "#1C2A3A", "#2D5DA8", "#B23A2E", "#C9D2CF"],
+      "materials": ["papier quadrillé", "encre bleue", "tampon « Vérifié »", "numéros de page", "ligne de signature"],
+      "viewport": "Une page de cahier ouverte : en en-tête ton nom, la date et « Ingénieur IA, du prototype à la production ». L'entrée du jour montre la démo de réponse tracée, avec le tampon de vérification qui tombe à la fin.",
+      "risk": "C'est familier : le look papier se rapproche du style éditorial que beaucoup de sites adoptent."
+    },
+    {
+      "id": "challenger-kiosk",
+      "label": "Kiosque aux trois encres",
+      "verdict": "competitive",
+      "lineage": "Imprimés du quotidien (tickets, étiquettes) en trois encres et une marque géométrique par produit",
+      "thesis": "Tes 6 offres présentées comme des produits d'un même kiosque : trois encres, une marque géométrique par offre.",
+      "palette": ["#C9C7BF", "#1E1E1E", "#D2402A", "#2A5C8A"],
+      "materials": ["carton recyclé gris", "léger décalage d'impression", "grotesque géométrique"],
+      "viewport": "Une grille de 6 cellules-produits, ton nom imprimé en tête. La cellule active prend la troisième encre.",
+      "case": "Très lisible (offres en grille), mais le public santé ne s'y identifie pas.",
+      "risk": "Peut paraître rétro et graphique plus que professionnel.",
+      "hero": "https://impeccable.style/worlds/cards/vernacular-ephemera-socialist-kiosk-print-hero.webp"
+    },
+    {
+      "id": "challenger-scope",
+      "label": "Oscilloscope de laboratoire",
+      "verdict": "declined",
+      "lineage": "Banc de mesure à tube cathodique",
+      "thesis": "Tout se mesure sur une grille graduée.",
+      "palette": ["#39FF88", "#0A0D0B", "#8A9490", "#FFB000"],
+      "materials": ["verre phosphore", "graticule gravé"],
+      "viewport": "Un écran unique avec une trace lumineuse.",
+      "case": "Le noir avec un vert vif est un cliché, et le message reste flou.",
+      "risk": "Ressemble à tous les sites « tech » sombres.",
+      "kept": "Chaque chiffre est posé sur une même grille de mesure.",
+      "hero": "https://impeccable.style/worlds/cards/scientific-notation-oscilloscope-signal-bench-hero.webp"
+    },
+    {
+      "id": "challenger-emission",
+      "label": "Rail des raies d'émission",
+      "verdict": "declined",
+      "lineage": "Spectrogramme sur table lumineuse",
+      "thesis": "L'état se lit par la forme du trait, jamais par la couleur.",
+      "palette": ["#2B2B2B", "#E8E2D4", "#F2C200"],
+      "materials": ["continuum charbon", "traits fins"],
+      "viewport": "Un rail décentré qui porte chaque destination.",
+      "case": "Trop abstrait pour un premier contact commercial.",
+      "risk": "Peu lisible.",
+      "kept": "États portés par la forme (accessibilité).",
+      "hero": "https://impeccable.style/worlds/cards/operate-c-emission-line-rail-hero.webp"
+    },
+    {
+      "id": "challenger-kit",
+      "label": "Maillot de football",
+      "verdict": "declined",
+      "lineage": "Écusson, numéro, couleurs domicile/extérieur",
+      "thesis": "L'identité reste fixe, le contexte change de couleur.",
+      "palette": ["#0B3D91", "#FFFFFF", "#D4AF37"],
+      "materials": ["polyester", "broderie or"],
+      "viewport": "Un maillot de face avec l'écusson.",
+      "case": "Hors sujet pour la santé et le B2B.",
+      "risk": "Gadget.",
+      "kept": "L'identité reste fixe quand le contexte change.",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-football-kit-crest-hero.webp"
+    },
+    {
+      "id": "challenger-akari",
+      "label": "Atelier de lampes Akari",
+      "verdict": "declined",
+      "lineage": "Lampes en papier washi pliées",
+      "thesis": "Ce qui est replié reste à plat et s'ouvre au toucher.",
+      "palette": ["#F4EBD9", "#C8A97E", "#2A2A2A", "#D23C2A"],
+      "materials": ["washi", "bambou"],
+      "viewport": "Des volumes lumineux dans une pièce sombre.",
+      "case": "Atmosphère chaude mais sans lien avec ton offre.",
+      "risk": "Ressemble au défaut crème + chaleur.",
+      "kept": "Contenus repliés qui s'ouvrent au toucher.",
+      "hero": "https://impeccable.style/worlds/cards/paper-folds-pleats-deployable-akari-light-sculpture-hero.webp"
+    },
+    {
+      "id": "challenger-rain",
+      "label": "Jardin à pluie gravitationnelle",
+      "verdict": "declined",
+      "lineage": "Monde surréaliste interactif",
+      "thesis": "Rejeu déterministe de la scène.",
+      "palette": ["#5E6B5F", "#3B6FD8", "#D84A3B"],
+      "materials": ["gouttes", "nuages"],
+      "viewport": "Un jardin où la pluie tombe dans toutes les directions.",
+      "case": "Sans rapport avec l'offre.",
+      "risk": "Distrayant.",
+      "kept": "La démo se rejoue à l'identique.",
+      "hero": "https://impeccable.style/worlds/cards/dream-surreal-impossible-worlds-gravity-rain-garden-hero.webp"
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code", "toggle": false },
+  "canon": true,
+  "canonCard": {
+    "label": "Le standard du secteur",
+    "thesis": "Le portfolio de développeur IA habituel, exécuté proprement.",
+    "palette": ["#0B1220", "#E5E7EB", "#38BDF8"],
+    "materials": ["grille nette", "cartes projets", "fond sombre"],
+    "viewport": "Une accroche centrée, des cartes de services et de projets, la stack puis le contact.",
+    "risk": "Impossible à distinguer des autres portfolios, par construction."
+  },
+  "steer": true
+}

@@ -1,751 +1,713 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saindou Moudathirou Ben | Ingénieur IA & Data Scientist Santé</title>
-    <link rel="icon" href="https://raw.githubusercontent.com/Moudathirou/portfolio/main/logo.png" type="image/png">
-
-    <meta property="og:site_name" content="Saindou Moudathirou Ben">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Saindou Moudathirou Ben · Ingénieur IA, du prototype à la production</title>
     <meta name="description"
-        content="Portfolio de Saindou Moudathirou Ben, expert en IA Générative, Computer Vision et Machine Learning appliqué à la santé.">
+        content="Ingénieur IA freelance à Nantes : LLM/RAG, systèmes agentiques, machine learning et vision par ordinateur, du cadrage à la mise en production. Spécialisé dans les données sensibles et la santé.">
+    <meta name="theme-color" content="#F2F4F0">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Saindou Moudathirou Ben">
+    <meta property="og:title" content="Saindou Moudathirou Ben · Ingénieur IA, du prototype à la production">
+    <meta property="og:description"
+        content="LLM/RAG, agents, machine learning et vision par ordinateur, du cadrage à la production. Spécialité : données sensibles et santé.">
+    <link rel="icon" href="./src/logo.png" type="image/png">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Caveat:wght@500;600&display=swap"
         rel="stylesheet">
+    <link href="./src/styles.css" rel="stylesheet">
 
-    <!-- Tailwind (Output will be built here) -->
-    <link href="./src/output.css" rel="stylesheet">
-    <!-- Or CDN for dev/preview ease if needed, but we used local config, so we assume build process. 
-         For users without build process running, we might want to add a script for CDN as fallback or setup? 
-         Let's stick to local build assumption or add CDN for immediate visualization if user opens file.
-         Request said 'Tailwind CSS', implying a build step usually, but to make it viewable immediately without npm run build: -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: { DEFAULT: '#0F172A', light: '#1E40AF' },
-                        secondary: { DEFAULT: '#06B6D4', light: '#22D3EE' },
-                        accent: { purple: '#8B5CF6', green: '#10B981' },
-                        dark: { bg: '#020617', surface: '#0F172A' }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace'],
-                    }
-                }
-            }
-        }
-    </script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebSite",
+      "@type": "Person",
       "name": "Saindou Moudathirou Ben",
-      "url": "https://moudathirou.com"
+      "jobTitle": "Ingénieur IA",
+      "address": { "@type": "PostalAddress", "addressLocality": "Nantes", "addressCountry": "FR" },
+      "url": "https://moudathirou.com",
+      "sameAs": ["https://github.com/Moudathirou", "https://www.linkedin.com/in/saindou-moudathirou-ben"]
     }
     </script>
-    <style>
-        /* Custom Overrides until build setup is perfect */
-        body {
-            background-color: #020617;
-            color: #F8FAFC;
-        }
-    </style>
 
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script src="./src/main.js" defer></script>
 </head>
 
-<body class="antialiased overflow-x-hidden">
+<body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
 
-    <!-- Navbar -->
-    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md bg-dark-bg/80 border-b border-white/5"
-        id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0 font-bold text-2xl tracking-tighter text-secondary">
-                    SMB<span class="text-accent-purple">.AI</span>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#about"
-                            class="hover:text-secondary transition-colors px-3 py-2 rounded-md text-sm font-medium">À
-                            Propos</a>
-                        <a href="#expertise"
-                            class="hover:text-secondary transition-colors px-3 py-2 rounded-md text-sm font-medium">Expertise</a>
-                        <a href="#services"
-                            class="hover:text-secondary transition-colors px-3 py-2 rounded-md text-sm font-medium">Services</a>
-                        <a href="#projects"
-                            class="hover:text-secondary transition-colors px-3 py-2 rounded-md text-sm font-medium">Projets</a>
-                        <a href="#contact"
-                            class="px-4 py-2 rounded-full bg-secondary/10 text-secondary border border-secondary/20 hover:bg-secondary/20 transition-all">Me
-                            Contacter</a>
-                    </div>
-                </div>
-                <!-- Mobile menu button -->
-                <div class="-mr-2 flex md:hidden">
-                    <button type="button"
-                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-white/10 focus:outline-none"
-                        aria-controls="mobile-menu" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
-                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <!-- Background Elements -->
-        <div class="absolute inset-0 z-0">
-            <div class="absolute top-[20%] left-[10%] w-96 h-96 bg-primary-light/20 rounded-full blur-[100px]"></div>
-            <div class="absolute bottom-[20%] right-[10%] w-96 h-96 bg-accent-purple/20 rounded-full blur-[100px]">
-            </div>
-        </div>
-
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6">
-                <span
-                    class="block text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent-purple">Intelligence
-                    Artificielle</span>
-                <span class="block mt-2">& Santé de Demain</span>
-            </h1>
-            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400">
-                Transformez vos données médicales en intelligence actionnable avec l'IA Générative et la Computer
-                Vision.
-            </p>
-            <div class="mt-10 flex justify-center gap-4">
-                <a href="#contact"
-                    class="px-8 py-3 rounded-full bg-gradient-to-r from-secondary to-accent-purple text-white font-semibold hover:shadow-lg hover:shadow-secondary/25 transition-all">
-                    Discutons de votre projet
+    <header class="masthead" id="masthead">
+        <div class="masthead__inner">
+            <div class="masthead__fields">
+                <a class="masthead__field masthead__title" href="#top">
+                    <span class="masthead__label">Titulaire</span>
+                    <span class="masthead__name">S. Moudathirou Ben</span>
                 </a>
-                <a href="#expertise"
-                    class="px-8 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all backdrop-blur-sm">
-                    Découvrir mon expertise
-                </a>
+                <p class="masthead__field masthead__field--wide">
+                    <span class="masthead__label">Objet</span>
+                    <span class="masthead__value">Missions IA, du prototype à la production</span>
+                </p>
             </div>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+                <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+                    stroke-width="1.6" stroke-linecap="round">
+                    <path d="M4 7h16M4 12h16M4 17h16" />
+                </svg>
+                <span>Sommaire</span>
+            </button>
+            <nav class="site-nav" id="site-nav" aria-label="Sommaire">
+                <ul>
+                    <li><a href="#offres">Offres</a></li>
+                    <li><a href="#protocole">Méthode</a></li>
+                    <li><a href="#resultats">Résultats</a></li>
+                    <li><a href="#parcours">Parcours</a></li>
+                    <li><a class="site-nav__cta" href="#contact">Parler de votre projet</a></li>
+                </ul>
+            </nav>
         </div>
-    </section>
+    </header>
 
-    <!-- Sections Placeholder -->
-    <section id="about" class="py-24 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center fade-up"><span class="text-secondary">01.</span>
-                À Propos de Moi</h2>
+    <main id="main" class="sheet">
 
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="fade-up">
-                    <p class="text-lg text-gray-300 leading-relaxed mb-6">
-                        Je suis <strong class="text-white">Saindou</strong>, ingénieur IA indépendant passionné par
-                        l'intersection entre <span class="text-secondary">intelligence artificielle</span> et <span
-                            class="text-accent-green">santé</span>.
-                    </p>
-                    <p class="text-lg text-gray-300 leading-relaxed mb-6">
-                        Avec plus de <strong class="text-white">2 ans d'expérience</strong> en IA générative et une
-                        expertise pointue en Computer Vision, je conçois des solutions intelligentes qui transforment
-                        les pratiques médicales et améliorent les décisions cliniques.
-                    </p>
-                    <p class="text-lg text-gray-300 leading-relaxed">
-                        Actuellement en Master 2 IA Santé, je combine recherche académique et expertise pratique pour
-                        livrer des projets innovants, sécurisés et conformes aux exigences RGPD.
-                    </p>
-                </div>
+        <!-- Première page -->
+        <section class="hero" id="top" aria-labelledby="hero-title">
+            <div class="hero__text">
+                <h1 id="hero-title" class="hero__name"><span>Saindou</span> <span>Moudathirou Ben</span></h1>
+                <p class="hero__role">Ingénieur IA, du prototype à la production.</p>
+                <p class="hero__lede">
+                    Je conçois et mets en production des systèmes LLM&nbsp;/&nbsp;RAG, des agents, du machine learning
+                    et de la vision par ordinateur. Ma spécialité&nbsp;: les données sensibles et les environnements
+                    réglementés, à commencer par la santé.
+                </p>
 
-                <div class="grid grid-cols-2 gap-4 fade-up delay-100">
-                    <div class="glass-card p-6 rounded-2xl text-center">
-                        <div class="text-4xl font-bold text-secondary mb-2">2+</div>
-                        <div class="text-sm text-gray-400">Années d'Expérience</div>
-                    </div>
-                    <div class="glass-card p-6 rounded-2xl text-center">
-                        <div class="text-4xl font-bold text-accent-purple mb-2">15+</div>
-                        <div class="text-sm text-gray-400">Projets Livrés</div>
-                    </div>
-                    <div class="glass-card p-6 rounded-2xl text-center">
-                        <div class="text-4xl font-bold text-accent-green mb-2">3</div>
-                        <div class="text-sm text-gray-400">Expertises Clés</div>
-                    </div>
-                    <div class="glass-card p-6 rounded-2xl text-center">
-                        <div class="text-4xl font-bold text-white mb-2">100%</div>
-                        <div class="text-sm text-gray-400">Orienté Résultats</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="expertise" class="py-24 bg-dark-surface/30 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center fade-up"><span class="text-secondary">02.</span>
-                Domaines d'Expertise</h2>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- IA Générative -->
-                <div class="glass-card p-8 rounded-3xl fade-up group">
-                    <div
-                        class="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <svg class="w-8 h-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-white">IA Générative & LLMs</h3>
-                    <ul class="space-y-3 text-gray-400 text-sm">
-                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Chatbots médicaux
-                            intelligents (RAG)</li>
-                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Fine-tuning (Llama,
-                            Mistral)</li>
-                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Génération rapports
-                            cliniques</li>
-                    </ul>
-                </div>
-
-                <!-- Computer Vision -->
-                <div class="glass-card p-8 rounded-3xl fade-up delay-100 group">
-                    <div
-                        class="w-14 h-14 bg-purple-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <svg class="w-8 h-8 text-accent-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Computer Vision Médicale</h3>
-                    <ul class="space-y-3 text-gray-400 text-sm">
-                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Détection pathologies
-                            (YOLO)</li>
-                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Segmentation d'organes
-                            (U-Net)</li>
-                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Analyse microscopique
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- ML Santé -->
-                <div class="glass-card p-8 rounded-3xl fade-up delay-200 group">
-                    <div
-                        class="w-14 h-14 bg-green-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <svg class="w-8 h-8 text-accent-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Machine Learning Santé</h3>
-                    <ul class="space-y-3 text-gray-400 text-sm">
-                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Modèles prédictifs
-                            (Risques)</li>
-                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Scoring patients</li>
-                        <li class="flex items-start"><span class="text-secondary mr-2">▹</span>Analyse registres
-                            médicaux</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="py-24 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center fade-up"><span class="text-secondary">03.</span>
-                Services Proposés</h2>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Conseil & Audit -->
-                <div class="glass-card p-8 rounded-3xl fade-up border-t-4 border-t-blue-500">
-                    <h3 class="text-2xl font-bold mb-4">Conseil & Audit IA</h3>
-                    <p class="text-gray-400 mb-6 text-sm">Expertise stratégique pour valider vos projets IA santé et
-                        assurer leur conformité.</p>
-                    <ul class="space-y-3 mb-8 text-sm">
-                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>Étude de faisabilité</li>
-                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>Audit qualité données</li>
-                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>Conformité RGPD/Santé</li>
-                    </ul>
-                    <a href="#contact"
-                        class="block w-full py-3 text-center rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10">Sur
-                        Devis</a>
-                </div>
-
-                <!-- Développement -->
-                <div
-                    class="glass-card p-8 rounded-3xl fade-up delay-100 border-t-4 border-t-purple-500 relative transform md:-translate-y-4">
-                    <div
-                        class="absolute top-0 right-0 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-3xl">
-                        POPULAIRE</div>
-                    <h3 class="text-2xl font-bold mb-4">Développement Sur Mesure</h3>
-                    <p class="text-gray-400 mb-6 text-sm">Création de bout en bout de solutions IA robustes et
-                        scalables.</p>
-                    <ul class="space-y-3 mb-8 text-sm">
-                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>Chatbots RAG & LLMs</li>
-                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>Pipelines Computer Vision</li>
-                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>Déploiement Cloud Sécurisé</li>
-                    </ul>
-                    <a href="#contact"
-                        class="block w-full py-3 text-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all">Demander
-                        un Devis</a>
-                </div>
-
-                <!-- Recherche -->
-                <div class="glass-card p-8 rounded-3xl fade-up delay-200 border-t-4 border-t-cyan-500">
-                    <h3 class="text-2xl font-bold mb-4">R&D & Prototypage</h3>
-                    <p class="text-gray-400 mb-6 text-sm">Expérimentation et validation de concepts innovants (POC).</p>
-                    <ul class="space-y-3 mb-8 text-sm">
-                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>Proof of Concept (POC)</li>
-                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>Modèles Expérimentaux</li>
-                        <li class="flex items-center text-gray-300"><svg class="w-5 h-5 text-green-400 mr-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>State-of-the-Art Review</li>
-                    </ul>
-                    <a href="#contact"
-                        class="block w-full py-3 text-center rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10">Me
-                        Consulter</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="py-24 bg-dark-surface/30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center fade-up"><span class="text-secondary">04.</span>
-                Projets Réalisés</h2>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Project 1 -->
-                <div class="group relative rounded-3xl overflow-hidden bg-dark-bg border border-white/5 fade-up">
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10">
-                    </div>
-                    <!-- Placeholder for project image or abstract generative art -->
-                    <div
-                        class="h-64 bg-gradient-to-br from-blue-900/40 to-slate-900 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                        <span class="text-6xl">💬</span>
-                    </div>
-                    <div class="relative z-20 p-8">
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="px-3 py-1 rounded-full text-xs font-mono bg-blue-500/20 text-blue-300 border border-blue-500/30">RAG</span>
-                            <span
-                                class="px-3 py-1 rounded-full text-xs font-mono bg-green-500/20 text-green-300 border border-green-500/30">GPT-4</span>
-                            <span
-                                class="px-3 py-1 rounded-full text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">FastAPI</span>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-2 group-hover:text-secondary transition-colors">Chatbot Médical
-                            Multilingue</h3>
-                        <p class="text-gray-400 mb-4 line-clamp-3">Développement d'un assistant conversationnel
-                            intelligent pour Orbicall, intégrant RAG pour répondre aux leads santé avec précision
-                            médicale multilingue.</p>
-                        <a href="#contact"
-                            class="inline-flex items-center text-sm font-semibold text-secondary hover:text-white transition-colors">
-                            Voir Étude de Cas <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div
-                    class="group relative rounded-3xl overflow-hidden bg-dark-bg border border-white/5 fade-up delay-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10">
-                    </div>
-                    <div
-                        class="h-64 bg-gradient-to-br from-red-900/40 to-slate-900 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                        <span class="text-6xl">🔥</span>
-                    </div>
-                    <div class="relative z-20 p-8">
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="px-3 py-1 rounded-full text-xs font-mono bg-orange-500/20 text-orange-300 border border-orange-500/30">Computer
-                                Vision</span>
-                            <span
-                                class="px-3 py-1 rounded-full text-xs font-mono bg-yellow-500/20 text-yellow-300 border border-yellow-500/30">YOLO</span>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-2 group-hover:text-secondary transition-colors">Détection
-                            Incendie IA</h3>
-                        <p class="text-gray-400 mb-4 line-clamp-3">Système de surveillance temps réel pour Majal
-                            Berkane, capable de détecter les départs de feu avec une latence < 100ms.</p>
-                                <a href="#contact"
-                                    class="inline-flex items-center text-sm font-semibold text-secondary hover:text-white transition-colors">
-                                    Voir Étude de Cas <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                    </svg>
-                                </a>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="group relative rounded-3xl overflow-hidden bg-dark-bg border border-white/5 fade-up">
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10">
-                    </div>
-                    <div
-                        class="h-64 bg-gradient-to-br from-indigo-900/40 to-slate-900 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                        <span class="text-6xl">🫁</span>
-                    </div>
-                    <div class="relative z-20 p-8">
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="px-3 py-1 rounded-full text-xs font-mono bg-blue-500/20 text-blue-300 border border-blue-500/30">Deep
-                                Learning</span>
-                            <span
-                                class="px-3 py-1 rounded-full text-xs font-mono bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Santé</span>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-2 group-hover:text-secondary transition-colors">Prédiction
-                            Embolie Pulmonaire</h3>
-                        <p class="text-gray-400 mb-4 line-clamp-3">Modèle prédictif de saignement sur le registre RIETE,
-                            aidant les cliniciens à stratifier les risques patients avec précision.</p>
-                        <a href="#contact"
-                            class="inline-flex items-center text-sm font-semibold text-secondary hover:text-white transition-colors">
-                            Voir Étude de Cas <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div
-                    class="group relative rounded-3xl overflow-hidden bg-dark-bg border border-white/5 fade-up delay-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10">
-                    </div>
-                    <div
-                        class="h-64 bg-gradient-to-br from-pink-900/40 to-slate-900 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                        <span class="text-6xl">🏡</span>
-                    </div>
-                    <div class="relative z-20 p-8">
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="px-3 py-1 rounded-full text-xs font-mono bg-pink-500/20 text-pink-300 border border-pink-500/30">Generative
-                                AI</span>
-                            <span
-                                class="px-3 py-1 rounded-full text-xs font-mono bg-violet-500/20 text-violet-300 border border-violet-500/30">Diffusion</span>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-2 group-hover:text-secondary transition-colors">Virtual
-                            Homestaging</h3>
-                        <p class="text-gray-400 mb-4 line-clamp-3">Solution de génération d'images photoréalistes pour
-                            l'immobilier, transformant des pièces vides en espaces aménagés.</p>
-                        <a href="#contact"
-                            class="inline-flex items-center text-sm font-semibold text-secondary hover:text-white transition-colors">
-                            Voir Étude de Cas <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-16 text-center fade-up">
-                <a href="https://github.com/MOUDATHIROU"
-                    class="px-8 py-4 rounded-full border border-white/10 hover:bg-white/5 transition-all text-sm font-medium tracking-wide">
-                    VOIR TOUS LES PROJETS GITHUB ->
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tech Stack Section -->
-    <section id="tech-stack" class="py-16 relative overflow-hidden border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 class="text-2xl font-bold mb-12 text-gray-400 fade-up">Technologies Maîtrisées</h2>
-            <div class="flex flex-wrap justify-center gap-8 fade-up opacity-80">
-                <!-- Logos/Tags (Text representation for now, images would be better) -->
-                <span
-                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">Python</span>
-                <span
-                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">PyTorch</span>
-                <span
-                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">TensorFlow</span>
-                <span
-                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">FastAPI</span>
-                <span
-                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">LangChain</span>
-                <span
-                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">Docker</span>
-                <span
-                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">OpenCV</span>
-                <span
-                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">YOLO</span>
-                <span
-                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">GPT-4</span>
-                <span
-                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">Claude</span>
-                <span
-                    class="text-xl font-mono text-gray-300 hover:text-white transition-colors cursor-default">PostgreSQL</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process Section -->
-    <section id="process" class="py-24 bg-dark-bg relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center fade-up"><span class="text-secondary">05.</span>
-                Processus & Valeurs</h2>
-
-            <div class="grid md:grid-cols-2 gap-16">
-                <!-- Timeline -->
-                <div class="fade-up">
-                    <h3 class="text-2xl font-bold mb-8">Ma Méthode de Travail</h3>
-                    <div class="space-y-8 border-l-2 border-white/10 ml-4 pl-8 relative">
-                        <div class="relative">
-                            <div
-                                class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-secondary border-4 border-dark-bg">
-                            </div>
-                            <h4 class="text-lg font-bold text-white">1. Découverte (30 min)</h4>
-                            <p class="text-gray-400 text-sm">Analyse de vos besoins et de la faisabilité.</p>
-                        </div>
-                        <div class="relative">
-                            <div
-                                class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-white/20 border-4 border-dark-bg">
-                            </div>
-                            <h4 class="text-lg font-bold text-white">2. Proposition & Devis</h4>
-                            <p class="text-gray-400 text-sm">Plan détaillé, stack technique et timeline.</p>
-                        </div>
-                        <div class="relative">
-                            <div
-                                class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-white/20 border-4 border-dark-bg">
-                            </div>
-                            <h4 class="text-lg font-bold text-white">3. Développement Agile</h4>
-                            <p class="text-gray-400 text-sm">Sprints, démos régulières et ajustements.</p>
-                        </div>
-                        <div class="relative">
-                            <div
-                                class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-accent-green border-4 border-dark-bg">
-                            </div>
-                            <h4 class="text-lg font-bold text-white">4. Livraison & Support</h4>
-                            <p class="text-gray-400 text-sm">Déploiement, documentation et garantie.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Why Me -->
-                <div class="fade-up delay-100">
-                    <h3 class="text-2xl font-bold mb-8">Pourquoi Me Choisir ?</h3>
-                    <div class="grid gap-4">
-                        <div class="p-6 rounded-2xl bg-white/5 border border-white/5">
-                            <h4 class="text-lg font-bold text-white mb-2">Double Expertise</h4>
-                            <p class="text-gray-400 text-sm">Ingénieur IA & Master Santé : je comprends vos données
-                                cliniques.</p>
-                        </div>
-                        <div class="p-6 rounded-2xl bg-white/5 border border-white/5">
-                            <h4 class="text-lg font-bold text-white mb-2">Conformité & Sécurité</h4>
-                            <p class="text-gray-400 text-sm">Sensibilisé RGPD, sécurité des données et éthique IA.</p>
-                        </div>
-                        <div class="p-6 rounded-2xl bg-white/5 border border-white/5">
-                            <h4 class="text-lg font-bold text-white mb-2">Technologie de Pointe</h4>
-                            <p class="text-gray-400 text-sm">Utilisation des derniers modèles SOTA (Outils IA 2025+).
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-24 relative overflow-hidden">
-        <div
-            class="absolute top-[20%] left-[50%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[120px] -translate-x-1/2 pointer-events-none">
-        </div>
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center fade-up"><span class="text-secondary">06.</span>
-                Me Contacter</h2>
-            <p class="text-center text-gray-400 mb-12 fade-up">Prêt à transformer vos données en intelligence ?
-                Discutons de votre projet.</p>
-
-            <form id="contact-form" method="post"
-                class="glass-card p-8 md:p-10 rounded-3xl fade-up border-t border-white/10 shadow-2xl">
-                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <dl class="fields hero__fields">
                     <div>
-                        <label for="name" class="block text-sm font-medium text-gray-400 mb-2">Nom Complet</label>
-                        <input type="text" id="name" name="name" required
-                            class="w-full bg-dark-bg/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
-                            placeholder="Votre nom">
+                        <dt>Statut</dt>
+                        <dd><span class="dot" aria-hidden="true"></span>Disponible maintenant</dd>
                     </div>
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email
-                            Professionnel</label>
-                        <input type="email" id="email" name="email" required
-                            class="w-full bg-dark-bg/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
-                            placeholder="email@entreprise.com">
+                        <dt>Lieu</dt>
+                        <dd>Nantes, ou à distance partout en France</dd>
                     </div>
+                    <div>
+                        <dt>Formation</dt>
+                        <dd>Master 2 Ingénierie de la Santé &amp; IA (2026)</dd>
+                    </div>
+                </dl>
+
+                <div class="hero__actions">
+                    <a class="btn btn--primary" href="#contact">Parler de votre projet</a>
+                    <a class="btn btn--link" href="#resultats">Voir les résultats</a>
+                </div>
+            </div>
+
+            <figure class="demo slip slip--tilt-left" aria-labelledby="demo-caption">
+                <figcaption id="demo-caption" class="demo__caption">
+                    Une réponse d'IA qui cite sa source, puis qui est vérifiée.
+                    <span class="demo__note">Démonstration&nbsp;: documents fictifs.</span>
+                </figcaption>
+
+                <div class="demo__tabs" role="tablist" aria-label="Choisir une démonstration">
+                    <button class="demo__tab" role="tab" id="tab-protocole" aria-selected="true"
+                        aria-controls="demo-panel" data-demo="protocole" type="button">Interroger un protocole</button>
+                    <button class="demo__tab" role="tab" id="tab-appel" aria-selected="false" tabindex="-1"
+                        aria-controls="demo-panel" data-demo="appel" type="button">Qualifier un appel d'offres</button>
+                    <button class="demo__tab" role="tab" id="tab-alerte" aria-selected="false" tabindex="-1"
+                        aria-controls="demo-panel" data-demo="alerte" type="button">Alerte réglementaire</button>
                 </div>
 
-                <div class="mb-6">
-                    <label for="type" class="block text-sm font-medium text-gray-400 mb-2">Type de Projet</label>
-                    <select id="type" name="type"
-                        class="w-full bg-dark-bg/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors appearance-none">
-                        <option value="Generative AI">IA Générative / LLM</option>
-                        <option value="Computer Vision">Computer Vision</option>
-                        <option value="Machine Learning">Machine Learning Prédictif</option>
-                        <option value="Autre">Autre</option>
-                    </select>
+                <div class="demo__panel" id="demo-panel" role="tabpanel" aria-labelledby="tab-protocole"
+                    aria-live="polite">
+                    <p class="demo__q"><span class="demo__label">Question</span><span data-slot="question">Quels sont
+                            les critères d'exclusion de l'étude&nbsp;?</span></p>
+                    <p class="demo__a"><span class="demo__label">Réponse</span><span data-slot="answer">Sont exclus les
+                            participants sous traitement hypolipémiant depuis moins de 3&nbsp;mois <span class="cite"
+                                data-ref="1">[1]</span> et les femmes enceintes ou allaitantes <span class="cite"
+                                data-ref="2">[2]</span>.</span></p>
+
+                    <div class="source" data-slot="source">
+                        <p class="source__ref" data-slot="ref">Protocole NUT-042 (fictif), version 2.1, page 12</p>
+                        <p class="source__text" data-slot="text"><strong>5.2 Critères de non-inclusion.</strong>
+                            <mark data-ref="1">(a) traitement hypolipémiant initié depuis moins de 3&nbsp;mois&nbsp;;</mark>
+                            <mark data-ref="2">(b) grossesse ou allaitement en cours&nbsp;;</mark> (c) participation à
+                            une autre étude dans les 30&nbsp;jours précédant l'inclusion.</p>
+                    </div>
+
+                    <p class="stamp" data-slot="stamp" aria-label="Vérifié : 2 citations sur 2 retrouvées à la source">
+                        <span class="stamp__word">Vérifié</span>
+                        <span class="stamp__detail" data-slot="stamp-detail">2/2 citations à la source</span>
+                    </p>
                 </div>
 
-                <div class="mb-6">
-                    <label for="message" class="block text-sm font-medium text-gray-400 mb-2">Description du
-                        Projet</label>
-                    <textarea id="message" name="message" rows="4" required
-                        class="w-full bg-dark-bg/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
-                        placeholder="Dites-m'en plus sur votre besoin..."></textarea>
-                </div>
-
-                <button type="submit"
-                    class="w-full py-4 rounded-xl bg-gradient-to-r from-secondary to-accent-purple text-white font-bold text-lg hover:shadow-lg hover:shadow-secondary/25 transition-all transform hover:-translate-y-0.5">
-                    Envoyer ma Demande
+                <button class="demo__replay btn btn--link" type="button" data-replay>
+                    <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                        stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 12a9 9 0 1 0 3-6.7" />
+                        <path d="M3 4v5h5" />
+                    </svg>
+                    Rejouer
                 </button>
-                <p class="text-xs text-center text-gray-500 mt-4">En envoyant ce formulaire, vous acceptez d'être
-                    recontacté. Vos données restent confidentielles.</p>
-            </form>
+            </figure>
+        </section>
 
-            <div class="mt-16 border-t border-white/5 pt-8 text-center fade-up">
-                <a href="mailto:kymsaindou@gmail.com"
-                    class="text-xl font-mono text-secondary hover:text-white transition-colors">kymsaindou@gmail.com</a>
-                <p class="text-gray-500 mt-2">+33 7 80 77 28 67 • Besançon, France</p>
-                <div class="flex justify-center gap-6 mt-6">
-                    <a href="https://github.com/MOUDATHIROU" target="_blank"
-                        class="text-gray-400 hover:text-white transition-colors">GitHub</a>
-                    <a href="https://linkedin.com/in/saindou-moudathirou-ben" target="_blank"
-                        class="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
-                </div>
+        <!-- Offres -->
+        <section class="section" id="offres" aria-labelledby="offres-title">
+            <div class="section__head">
+                <h2 id="offres-title">Ce que je prends en charge</h2>
+                <p class="section__intro">Six types de missions, toujours menées jusqu'à un système qui tourne et dont
+                    on mesure la qualité.</p>
             </div>
+
+            <ol class="ledger">
+                <li class="ledger__row ledger__row--lead">
+                    <svg class="ledger__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                        <path d="M14 3v5h5" />
+                        <circle cx="11.5" cy="14.5" r="2.5" />
+                        <path d="m13.5 16.5 2 2" />
+                    </svg>
+                    <h3 class="ledger__title">Assistant documentaire (RAG)</h3>
+                    <div class="ledger__body">
+                        <p>Interroger vos documents en langage naturel, avec la citation exacte de chaque réponse,
+                            jusqu'à la page. Déployable 100&nbsp;% en local quand les données ne doivent pas sortir.</p>
+                        <p class="ledger__tools">PostgreSQL + pgvector, BGE-M3, Ollama, LlamaIndex, LangChain</p>
+                    </div>
+                    <a class="ledger__proof" href="#cas-rag">Preuve&nbsp;: 100&nbsp;000+ documents</a>
+                </li>
+                <li class="ledger__row">
+                    <svg class="ledger__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 5h18l-7 8v6l-4-2v-4z" />
+                    </svg>
+                    <h3 class="ledger__title">Veille et tri de documents</h3>
+                    <div class="ledger__body">
+                        <p>Surveiller des sources (autorités, portails d'appels d'offres), trier ce qui compte et livrer
+                            chaque semaine des fiches dont chaque affirmation est sourcée.</p>
+                        <p class="ledger__tools">Python, FastAPI, Pydantic, pipelines multi-étages, LLM-as-a-judge</p>
+                    </div>
+                    <a class="ledger__proof" href="#cas-veille">Preuve&nbsp;: 100&nbsp;% de citations fidèles</a>
+                </li>
+                <li class="ledger__row">
+                    <svg class="ledger__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 11l2 2 4-4" />
+                        <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" />
+                    </svg>
+                    <h3 class="ledger__title">Audit d'un système LLM</h3>
+                    <div class="ledger__body">
+                        <p>Mesurer ce que fait réellement votre système&nbsp;: hallucinations, couverture, faux
+                            négatifs, coût par requête. Puis corriger ce qui doit l'être.</p>
+                        <p class="ledger__tools">Jeux d'évaluation, LLM-as-a-judge, journal d'audit, suivi des coûts</p>
+                    </div>
+                    <a class="ledger__proof" href="#cas-appels">Preuve&nbsp;: &lt;&nbsp;1&nbsp;% de faux négatifs</a>
+                </li>
+                <li class="ledger__row">
+                    <svg class="ledger__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="5" cy="6" r="2" />
+                        <circle cx="19" cy="6" r="2" />
+                        <circle cx="12" cy="18" r="2" />
+                        <path d="M7 6h10M6 8l5 8M18 8l-5 8" />
+                    </svg>
+                    <h3 class="ledger__title">Systèmes agentiques</h3>
+                    <div class="ledger__body">
+                        <p>Des workflows en plusieurs étapes qui utilisent des outils, avec garde-fous, plafonds de coût
+                            et repli automatique d'un fournisseur de modèle à l'autre.</p>
+                        <p class="ledger__tools">LangGraph, CrewAI, Agno, GPT, Claude, Mistral</p>
+                    </div>
+                    <a class="ledger__proof" href="#cas-appels">Voir le pipeline multi-étages</a>
+                </li>
+                <li class="ledger__row">
+                    <svg class="ledger__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 3v4M15 3v4M7 7h10v4a5 5 0 0 1-10 0z" />
+                        <path d="M12 16v5" />
+                    </svg>
+                    <h3 class="ledger__title">IA intégrée à vos applications</h3>
+                    <div class="ledger__body">
+                        <p>Brancher un LLM, un chatbot ou la voix dans un produit existant, au travers d'une API propre,
+                            testée et documentée.</p>
+                        <p class="ledger__tools">FastAPI, Docker, API OpenAI / Claude / Mistral, Whisper, ElevenLabs</p>
+                    </div>
+                    <a class="ledger__proof" href="#cas-chatbots">Voir les chatbots pour agences</a>
+                </li>
+                <li class="ledger__row">
+                    <svg class="ledger__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2" />
+                        <rect x="8" y="8" width="8" height="8" rx="1" />
+                    </svg>
+                    <h3 class="ledger__title">Machine learning et vision par ordinateur</h3>
+                    <div class="ledger__body">
+                        <p>Des données au modèle déployé&nbsp;: préparation, entraînement, validation, puis mise en
+                            service. Détection, classification, comptage, prédiction de risque.</p>
+                        <p class="ledger__tools">PyTorch, scikit-learn, XGBoost, YOLO / Ultralytics, OpenCV</p>
+                    </div>
+                    <a class="ledger__proof" href="#cas-vision">Voir la vision temps réel</a>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Méthode -->
+        <section class="section section--protocol" id="protocole" aria-labelledby="protocole-title">
+            <div class="section__head">
+                <h2 id="protocole-title">Du cadrage à la production</h2>
+                <p class="section__intro">Je prends le projet en entier. Chaque étape se termine par quelque chose de
+                    mesurable.</p>
+            </div>
+
+            <ol class="protocol">
+                <li>
+                    <h3>Cadrer</h3>
+                    <p>Le besoin, les données disponibles, les contraintes (RGPD, hébergement, budget) et la mesure de
+                        réussite, fixés ensemble avant d'écrire du code.</p>
+                </li>
+                <li>
+                    <h3>Prototyper et mesurer</h3>
+                    <p>Un premier système sur vos documents réels, évalué sur un jeu de test. On sait ce qu'il vaut
+                        avant d'aller plus loin.</p>
+                </li>
+                <li>
+                    <h3>Industrialiser</h3>
+                    <p>API, tests, Docker, journal d'audit, gestion des erreurs et des coûts d'inférence.</p>
+                </li>
+                <li>
+                    <h3>Mettre en production et suivre</h3>
+                    <p>Sur votre infrastructure ou dans le cloud, y compris sur un serveur isolé sans accès réseau. La
+                        qualité et les coûts restent suivis dans la durée.</p>
+                </li>
+            </ol>
+
+            <p class="margin-note margin-note--protocol">
+                <svg aria-hidden="true" viewBox="0 0 40 24" width="40" height="24" fill="none" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M38 4C26 4 14 8 4 20" />
+                    <path d="M4 12v8h8" />
+                </svg>
+                Veille appels d'offres&nbsp;: en production en 8&nbsp;jours.
+            </p>
+        </section>
+
+        <!-- Résultats -->
+        <section class="section" id="resultats" aria-labelledby="resultats-title">
+            <div class="section__head">
+                <h2 id="resultats-title">Résultats</h2>
+                <p class="section__intro">Projets menés en entreprise et en recherche. Le code et les données restent
+                    confidentiels&nbsp;; les démonstrations de cette page sont reconstituées avec des documents
+                    fictifs.</p>
+            </div>
+
+            <div class="filters" role="group" aria-label="Filtrer par secteur">
+                <button type="button" class="filter" aria-pressed="true" data-filter="all">Tous</button>
+                <button type="button" class="filter" aria-pressed="false" data-filter="sante">Santé</button>
+                <button type="button" class="filter" aria-pressed="false" data-filter="immobilier">Immobilier</button>
+                <button type="button" class="filter" aria-pressed="false" data-filter="industrie">Industrie &amp;
+                    environnement</button>
+            </div>
+            <p class="visually-hidden" id="filter-status" role="status" aria-live="polite"></p>
+
+            <div class="cases">
+                <article class="case case--feature" id="cas-rag" data-sector="sante">
+                    <header class="case__head">
+                        <h3>Base de connaissances confidentielle sur plus de 100&nbsp;000 documents d'études cliniques
+                        </h3>
+                        <p class="case__context">Biofortis, CRO nutrition &amp; santé · 2026 · stage de fin d'études
+                        </p>
+                    </header>
+                    <p>Interroger en langage naturel un fonds de plus de 100&nbsp;000 documents d'études cliniques,
+                        sans qu'aucune donnée ne quitte le serveur (RGPD, secret des affaires). Chaque réponse cite ses
+                        sources jusqu'à la page.</p>
+
+                    <figure class="pipeline slip slip--tape-single" aria-labelledby="pipeline-caption">
+                        <figcaption id="pipeline-caption">Principe de l'architecture, 100&nbsp;% locale</figcaption>
+                        <ol class="pipeline__steps">
+                            <li><strong>Documents</strong><span>formats anciens convertis</span></li>
+                            <li><strong>Déidentification</strong><span>avant toute indexation</span></li>
+                            <li><strong>Indexation</strong><span>PostgreSQL + pgvector, embeddings sur GPU</span></li>
+                            <li><strong>Recherche hybride</strong><span>sémantique et lexicale</span></li>
+                            <li><strong>LLM local</strong><span>aucun appel externe</span></li>
+                            <li><strong>Réponse citée</strong><span>source et page</span></li>
+                        </ol>
+                    </figure>
+
+                    <table class="measures">
+                        <caption class="visually-hidden">Mesures du projet et leur provenance</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Mesure</th>
+                                <th scope="col">Valeur</th>
+                                <th scope="col">Provenance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Documents indexés</th>
+                                <td class="num">100&nbsp;000+</td>
+                                <td>Fonds d'études cliniques de l'entreprise</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Conversion des formats anciens</th>
+                                <td class="num">99,5&nbsp;%</td>
+                                <td>Pipeline d'ingestion, avec reprise sur erreur</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <details class="case__more">
+                        <summary>Détail de la méthode</summary>
+                        <ul>
+                            <li>Privacy by design, journal d'audit conçu selon GxP / 21&nbsp;CFR Part&nbsp;11.</li>
+                            <li>Architecture hexagonale, dédoublonnage par empreinte, reprise sur erreur.</li>
+                            <li>Un registre d'études généré automatiquement remplace un fichier Excel tenu à la main.
+                            </li>
+                        </ul>
+                    </details>
+                </article>
+
+                <article class="case" id="cas-veille" data-sector="sante">
+                    <header class="case__head">
+                        <h3>Veille réglementaire automatisée</h3>
+                        <p class="case__context">Biofortis · 2026 · dispositifs médicaux</p>
+                    </header>
+                    <p>Surveillance multi-autorités et multi-juridictions (MDR / IVDR), avec des fiches d'alerte où
+                        chaque affirmation renvoie à sa source. Architecture modulaire et replis à plusieurs niveaux
+                        pour que le service ne s'arrête pas.</p>
+                    <figure class="exhibit slip slip--tape-single" aria-label="Exemple de fiche d'alerte, reconstituée avec des données fictives">
+                        <figcaption class="exhibit__cap">Fiche d'alerte, reconstituée (fictive)</figcaption>
+                        <dl class="exhibit__fields">
+                            <div><dt>Objet</dt><dd>Rappel volontaire d'une pompe à perfusion, modèle X-12</dd></div>
+                            <div><dt>Classe</dt><dd>IIb · MDR 2017/745</dd></div>
+                            <div><dt>Action</dt><dd>Vérifier les lots en stock avant le 15/07 <span class="cite">[1]</span></dd></div>
+                        </dl>
+                        <p class="exhibit__src"><span class="cite">[1]</span> Avis de sécurité du 03/07/2026, §&nbsp;2</p>
+                    </figure>
+                    <table class="measures">
+                        <caption class="visually-hidden">Mesures du projet et leur provenance</caption>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Citations fidèles</th>
+                                <td class="num">100&nbsp;%</td>
+                                <td><span class="audit-mark"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10" /></svg>audité</span> Contrôle des fiches d'alerte</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="case__aside">L'audit de couverture a aussi révélé plusieurs anomalies silencieuses que la
+                        supervision ne détectait pas.</p>
+                    <p class="case__tools">Python, FastAPI, Pydantic</p>
+                </article>
+
+                <article class="case" id="cas-appels" data-sector="sante">
+                    <header class="case__head">
+                        <h3>Qualification IA des appels d'offres publics</h3>
+                        <p class="case__context">Biofortis · en production depuis juin 2026</p>
+                    </header>
+                    <p>Un pipeline multi-étages, du filtre le moins coûteux au plus coûteux, couvre les principaux
+                        portails français et européens. Les opportunités qualifiées partent chaque semaine à l'équipe
+                        commerciale.</p>
+                    <figure class="exhibit slip slip--tape-corners" aria-label="Exemple d'avis qualifié, reconstitué avec des données fictives">
+                        <figcaption class="exhibit__cap">Avis n°&nbsp;26-1187, reconstitué (fictif)</figcaption>
+                        <ol class="exhibit__stages">
+                            <li><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10" /></svg><span>Filtre par mots-clés</span><span class="exhibit__cost">coût le plus bas</span></li>
+                            <li><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10" /></svg><span>Classement par modèle</span><span class="exhibit__cost">coût moyen</span></li>
+                            <li><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10" /></svg><span>Lecture par LLM, citation du lot</span><span class="exhibit__cost">coût le plus haut</span></li>
+                        </ol>
+                        <p class="exhibit__verdict">Qualifié · lot&nbsp;2, analyse statistique d'un essai de phase&nbsp;II · transmis lundi</p>
+                    </figure>
+                    <table class="measures">
+                        <caption class="visually-hidden">Mesures du projet et leur provenance</caption>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Faux négatifs</th>
+                                <td class="num">&lt;&nbsp;1&nbsp;%</td>
+                                <td><span class="audit-mark"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10" /></svg>audité</span> Audit LLM-as-a-judge</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Mise en production</th>
+                                <td class="num">8&nbsp;jours</td>
+                                <td>Réutilisation de l'architecture du projet de veille</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="case__aside">Plusieurs dizaines de milliers d'avis analysés. Coûts d'inférence maîtrisés
+                        par caches, plafonds de dépense et traçabilité des rejets.</p>
+                </article>
+
+                <article class="case" id="cas-riete" data-sector="sante">
+                    <header class="case__head">
+                        <h3>Prédiction des saignements précoces dans l'embolie pulmonaire</h3>
+                        <p class="case__context">Recherche, Master 2 · laboratoire universitaire et CHU de Besançon ·
+                            2025–2026</p>
+                    </header>
+                    <p>Projet de recherche mené au laboratoire de l'Université Marie et Louis Pasteur, en collaboration
+                        avec le CHU de Besançon&nbsp;: développement et validation d'un réseau de neurones profond pour
+                        prédire les saignements précoces dans l'embolie pulmonaire aiguë, à partir du registre RIETE.</p>
+                    <p class="case__tools">Deep learning, PyTorch, analyse statistique</p>
+                </article>
+
+                <article class="case" id="cas-chatbots" data-sector="immobilier">
+                    <header class="case__head">
+                        <h3>Chatbots RAG et assistant vocal pour agences</h3>
+                        <p class="case__context">Orbicall, immobilier · 2023–2025</p>
+                    </header>
+                    <p>Des chatbots installables par plugin, qui parcourent le site du client pour construire leur base
+                        de connaissances et répondent en temps réel avec GPT, Claude ou Mistral. Une version vocale
+                        permet de parler naturellement à l'assistant.</p>
+                    <p class="case__tools">RAG, crawling, Whisper, ElevenLabs</p>
+                </article>
+
+                <article class="case" data-sector="immobilier">
+                    <header class="case__head">
+                        <h3>Home staging virtuel et vidéos d'annonces</h3>
+                        <p class="case__context">Orbicall, immobilier · 2023–2025</p>
+                    </header>
+                    <p>Des rendus 2D photoréalistes de pièces vides aménagées, et un générateur automatique de vidéos
+                        immobilières à partir des photos, de la description de l'annonce et de consignes texte.</p>
+                    <p class="case__tools">Vision par ordinateur, traitement d'image, IA générative</p>
+                </article>
+
+                <article class="case" id="cas-vision" data-sector="industrie">
+                    <header class="case__head">
+                        <h3>Vision par ordinateur en temps réel</h3>
+                        <p class="case__context">Majal Berkane, Maroc · 2023</p>
+                    </header>
+                    <p>Alerte incendie par analyse vidéo en temps réel, plateforme de surveillance maritime (détection et
+                        classification d'objets), détection d'oiseaux sur le site E-Moulaya et comptage de passagers
+                        dans les transports publics.</p>
+                    <p class="case__tools">YOLO, OpenCV, détection et classification d'objets</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Parcours -->
+        <section class="section" id="parcours" aria-labelledby="parcours-title">
+            <div class="section__head">
+                <h2 id="parcours-title">Parcours</h2>
+                <p class="section__intro">Près de trois ans d'IA appliquée dans trois secteurs, puis une spécialisation
+                    en santé.</p>
+            </div>
+
+            <ol class="timeline">
+                <li>
+                    <p class="timeline__date"><time datetime="2025-09">09/2025</time><span class="dash"> – </span><time datetime="2026-09">09/2026</time>
+                    </p>
+                    <div class="timeline__body">
+                        <h3>Master 2 Ingénierie de la Santé &amp; IA, parcours INASYS</h3>
+                        <p>UFR Santé, Université Marie et Louis Pasteur, Besançon. Diplômé en 2026.</p>
+                    </div>
+                </li>
+                <li>
+                    <p class="timeline__date"><time datetime="2026-04">04/2026</time><span class="dash"> – </span><time
+                            datetime="2026-09">09/2026</time></p>
+                    <div class="timeline__body">
+                        <h3>Data Scientist / Ingénieur IA, Biofortis SAS</h3>
+                        <p>Stage de fin d'études, pôle Bioinformatique &amp; Data Sciences d'une CRO nutrition &amp;
+                            santé. Trois systèmes d'IA documentaire conçus, mis en production et audités.</p>
+                        <p class="tag">Santé</p>
+                    </div>
+                </li>
+                <li>
+                    <p class="timeline__date"><time datetime="2025-11">11/2025</time><span class="dash"> – </span><time
+                            datetime="2026-02">02/2026</time></p>
+                    <div class="timeline__body">
+                        <h3>Projet de recherche, Master 2</h3>
+                        <p>Laboratoire de recherche de l'Université Marie et Louis Pasteur, en collaboration avec le
+                            CHU de Besançon. Modèle de deep learning pour la prédiction des saignements précoces dans
+                            l'embolie pulmonaire (registre RIETE).</p>
+                        <p class="tag">Santé · recherche</p>
+                    </div>
+                </li>
+                <li>
+                    <p class="timeline__date"><time datetime="2023-10">10/2023</time><span class="dash"> – </span><time
+                            datetime="2025-08">08/2025</time></p>
+                    <div class="timeline__body">
+                        <h3>Développeur IA, Orbicall</h3>
+                        <p>Nador, Maroc. Chatbots RAG, assistant vocal, home staging virtuel, génération de vidéos.</p>
+                        <p class="tag">Immobilier</p>
+                    </div>
+                </li>
+                <li>
+                    <p class="timeline__date"><time datetime="2023-03">03/2023</time><span class="dash"> – </span><time
+                            datetime="2023-08">08/2023</time></p>
+                    <div class="timeline__body">
+                        <h3>Data Scientist / Computer Vision, Majal Berkane</h3>
+                        <p>Maroc. Détection incendie, surveillance maritime, détection d'oiseaux, comptage de passagers.
+                        </p>
+                        <p class="tag">Industrie &amp; environnement</p>
+                    </div>
+                </li>
+                <li>
+                    <p class="timeline__date"><time datetime="2021-09">09/2021</time><span class="dash"> – </span><time
+                            datetime="2023-10">10/2023</time></p>
+                    <div class="timeline__body">
+                        <h3>Master Sciences des Données et Systèmes Intelligents</h3>
+                        <p>Université Mohammed Premier, Maroc.</p>
+                    </div>
+                </li>
+                <li>
+                    <p class="timeline__date"><time datetime="2017-09">09/2017</time><span class="dash"> – </span><time
+                            datetime="2021-07">07/2021</time></p>
+                    <div class="timeline__body">
+                        <h3>Licence Génie Logiciel</h3>
+                        <p>Faculté des Sciences et Techniques d'Er-Rachidia, Université Moulay Ismaïl, Maroc.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Matériel et méthodes -->
+        <section class="section" id="methodes" aria-labelledby="methodes-title">
+            <div class="section__head">
+                <h2 id="methodes-title">Matériel et méthodes</h2>
+            </div>
+            <dl class="inventory">
+                <div>
+                    <dt>LLM, RAG et agents</dt>
+                    <dd>RAG en production (recherche hybride, découpage hiérarchique, citations traçables), LangChain,
+                        LlamaIndex, LangGraph, CrewAI, Agno&nbsp;; GPT, Claude, Mistral, LLaMA, Qwen, DeepSeek&nbsp;;
+                        chaînes de repli multi-fournisseurs, protection contre l'injection de prompt.</dd>
+                </div>
+                <div>
+                    <dt>Embeddings et bases vectorielles</dt>
+                    <dd>BGE-M3, pgvector, Qdrant, Chroma, Pinecone, FAISS&nbsp;; modèles exécutés en local avec Ollama.
+                    </dd>
+                </div>
+                <div>
+                    <dt>Machine learning et vision</dt>
+                    <dd>PyTorch, TensorFlow, scikit-learn, XGBoost, Pandas&nbsp;; CNN, Transformers, ViT,
+                        YOLO / Ultralytics, segmentation, OCR, OpenCV, VLM.</dd>
+                </div>
+                <div>
+                    <dt>Ingénierie et production</dt>
+                    <dd>Python, FastAPI, Pydantic, architecture hexagonale, pytest, Docker, Git&nbsp;; PostgreSQL,
+                        MongoDB, Neo4j&nbsp;; GCP, Vercel, VPS, serveur isolé sans accès réseau.</dd>
+                </div>
+                <div>
+                    <dt>Voix</dt>
+                    <dd>Whisper, Deepgram, AssemblyAI, ElevenLabs, OpenAI TTS.</dd>
+                </div>
+                <div>
+                    <dt>Conformité et traçabilité</dt>
+                    <dd>RGPD et privacy by design, MDR 2017/745, IVDR 2017/746, ISO&nbsp;13485, GxP / 21&nbsp;CFR
+                        Part&nbsp;11, déidentification, journal d'audit, audit de couverture et de rappel.</dd>
+                </div>
+            </dl>
+        </section>
+
+        <!-- Contact -->
+        <section class="section section--contact" id="contact" aria-labelledby="contact-title">
+            <div class="section__head">
+                <h2 id="contact-title">Parler de votre projet</h2>
+                <p class="section__intro">Décrivez votre besoin en quelques lignes. Je réponds sous 24&nbsp;h ouvrées,
+                    avec une première idée de l'approche.</p>
+            </div>
+
+            <div class="contact">
+                <form class="form slip slip--tape-corners" id="contact-form" novalidate>
+                    <div class="form__row">
+                        <div class="field">
+                            <label for="name">Nom</label>
+                            <input type="text" id="name" name="name" autocomplete="name" required minlength="2"
+                                maxlength="100" aria-describedby="name-error">
+                            <p class="field__error" id="name-error" hidden></p>
+                        </div>
+                        <div class="field">
+                            <label for="email">Email professionnel</label>
+                            <input type="email" id="email" name="email" autocomplete="email" required
+                                aria-describedby="email-error">
+                            <p class="field__error" id="email-error" hidden></p>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="type">Type de projet</label>
+                        <select id="type" name="type" required>
+                            <option value="RAG / Assistant documentaire">Assistant documentaire (RAG)</option>
+                            <option value="Système agentique">Système agentique</option>
+                            <option value="Automatisation &amp; veille">Veille et tri de documents</option>
+                            <option value="Intégration IA">IA intégrée à une application</option>
+                            <option value="ML / Computer Vision">Machine learning ou vision par ordinateur</option>
+                            <option value="Audit LLM">Audit d'un système LLM</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="message">Votre besoin</label>
+                        <textarea id="message" name="message" rows="5" required minlength="5" maxlength="2000"
+                            aria-describedby="message-help message-error"></textarea>
+                        <p class="field__help" id="message-help">Contexte, données concernées, échéance si vous en avez
+                            une.</p>
+                        <p class="field__error" id="message-error" hidden></p>
+                    </div>
+
+                    <div class="hp" aria-hidden="true">
+                        <label for="website">Ne pas remplir</label>
+                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <div class="form__foot">
+                        <button class="btn btn--primary" type="submit" data-label="Envoyer la demande">Envoyer la
+                            demande</button>
+                        <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+                    </div>
+
+                    <p class="form__privacy">Vos informations servent uniquement à vous répondre. Elles ne sont ni
+                        revendues ni utilisées pour de la prospection, et sont conservées au plus 3&nbsp;ans après notre
+                        dernier échange. Pour les faire supprimer, écrivez à kymsaindou@gmail.com.</p>
+                </form>
+
+                <aside class="contact__direct" aria-label="Contact direct">
+                    <p class="contact__lead">Ou directement&nbsp;:</p>
+                    <p><a class="contact__mail" href="mailto:kymsaindou@gmail.com">kymsaindou@gmail.com</a></p>
+                    <p><a href="tel:+33780772867">+33&nbsp;7&nbsp;80&nbsp;77&nbsp;28&nbsp;67</a></p>
+                    <p>Nantes, France · missions à distance</p>
+                    <ul class="contact__links">
+                        <li><a href="https://www.linkedin.com/in/saindou-moudathirou-ben" target="_blank"
+                                rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="https://github.com/Moudathirou" target="_blank"
+                                rel="noopener noreferrer">GitHub</a></li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__inner">
+            <p class="signature" aria-label="Signé Saindou Moudathirou Ben">S. Moudathirou Ben</p>
+            <details class="legal">
+                <summary>Mentions légales</summary>
+                <dl>
+                    <div>
+                        <dt>Éditeur</dt>
+                        <dd>Saindou Moudathirou Ben, Nantes, France. kymsaindou@gmail.com</dd>
+                    </div>
+                    <div>
+                        <dt>Statut et SIRET</dt>
+                        <dd>À compléter</dd>
+                    </div>
+                    <div>
+                        <dt>Hébergeur</dt>
+                        <dd>Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis</dd>
+                    </div>
+                    <div>
+                        <dt>Données personnelles</dt>
+                        <dd>Les données du formulaire servent uniquement à répondre à votre demande. Vous pouvez en
+                            demander l'accès ou la suppression à kymsaindou@gmail.com.</dd>
+                    </div>
+                </dl>
+            </details>
+            <p class="footer__copy">© 2026 Saindou Moudathirou Ben</p>
         </div>
-    </section>
-
-    <footer class="py-8 border-t border-white/5 text-center text-gray-500 text-sm">
-        <p>&copy; 2026 Saindou Moudathirou Ben. All rights reserved.</p>
     </footer>
-
-    <script src="./src/main.js"></script>
-
-    <!-- Gestion formulaire de contact (inline pour fiabilité maximale) -->
-    <script>
-            (function () {
-                var form = document.getElementById('contact-form');
-                if (!form) return;
-
-                // Détecter l'URL de l'API : si servi par FastAPI => relatif, sinon URL absolue du backend
-                function getApiUrl() {
-                   
-                    // En local ou sur le même serveur FastAPI
-                    return '/api/contact';
-                }
-
-                form.addEventListener('submit', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    var submitBtn = form.querySelector('button[type="submit"]');
-                    var originalText = submitBtn ? submitBtn.innerText : '';
-                    var formData = new FormData(form);
-                    var data = {};
-                    formData.forEach(function (value, key) { data[key] = value; });
-
-                    if (submitBtn) {
-                        submitBtn.innerText = 'Envoi en cours...';
-                        submitBtn.disabled = true;
-                        submitBtn.style.opacity = '0.7';
-                    }
-
-                    fetch(getApiUrl(), {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data)
-                    })
-                        .then(function (response) {
-                            return response.json().then(function (result) {
-                                return { ok: response.ok, data: result };
-                            });
-                        })
-                        .then(function (res) {
-                            if (res.ok) {
-                                // Afficher message de succès dans le formulaire
-                                var successMsg = document.getElementById('form-success-msg');
-                                if (!successMsg) {
-                                    successMsg = document.createElement('div');
-                                    successMsg.id = 'form-success-msg';
-                                    successMsg.style.cssText = 'background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.4);border-radius:12px;padding:16px;margin-top:16px;color:#34d399;text-align:center;font-weight:600;';
-                                    form.appendChild(successMsg);
-                                }
-                                successMsg.textContent = res.data.message || 'Message envoyé avec succès ! Je vous répondrai sous 24h.';
-                                form.reset();
-                            } else {
-                                // FastAPI 422 retourne detail comme un tableau d'objets
-                                var detail = res.data.detail;
-                                var errorMsg;
-                                if (Array.isArray(detail)) {
-                                    errorMsg = detail.map(function (e) { return e.msg || JSON.stringify(e); }).join(', ');
-                                } else if (typeof detail === 'string') {
-                                    errorMsg = detail;
-                                } else {
-                                    errorMsg = 'Une erreur est survenue. Veuillez réessayer.';
-                                }
-                                alert('Erreur : ' + errorMsg);
-                            }
-                        })
-                        .catch(function (err) {
-                            console.error('Erreur réseau:', err);
-                            alert('Impossible de joindre le serveur. Contactez-moi directement à kymsaindou@gmail.com');
-                        })
-                        .finally(function () {
-                            if (submitBtn) {
-                                submitBtn.innerText = originalText;
-                                submitBtn.disabled = false;
-                                submitBtn.style.opacity = '1';
-                            }
-                        });
-                }, true);
-            })();
-    </script>
 </body>
 
 </html>
