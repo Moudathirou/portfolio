@@ -66,17 +66,29 @@ async def send_contact_email(contact_data: dict) -> None:
         "--------------------------------------------------\n"
     )
 
+    smtp = aiosmtplib.SMTP(
+        hostname=smtp_server,
+        port=smtp_port,
+        start_tls=smtp_port != 465,
+        use_tls=smtp_port == 465,
+        timeout=SMTP_TIMEOUT_SECONDS,
+    )
     try:
-        await aiosmtplib.send(
-            msg,
-            hostname=smtp_server,
-            port=smtp_port,
-            username=smtp_user,
-            password=smtp_password,
-            start_tls=smtp_port != 465,
-            use_tls=smtp_port == 465,
-            timeout=SMTP_TIMEOUT_SECONDS,
+        async with smtp:
+            await smtp.ehlo()
+            # Une seule méthode d'authentification : après un refus, Gmail coupe la connexion
+            # et aiosmtplib remonterait « Unexpected EOF » au lieu du vrai code 535.
+            if "plain" in smtp.server_auth_methods:
+                await smtp.auth_plain(smtp_user, smtp_password)
+            else:
+                await smtp.login(smtp_user, smtp_password)
+            await smtp.send_message(msg)
+    except aiosmtplib.SMTPAuthenticationError as exc:
+        logger.error(
+            "Identifiants SMTP refusés par %s:%s pour %s (code %s : %s)",
+            smtp_server, smtp_port, smtp_user, exc.code, exc.message.splitlines()[0],
         )
+        raise EmailSendError("SMTP authentication failed") from exc
     except Exception as exc:  # noqa: BLE001 — détail journalisé, jamais renvoyé au client
-        logger.exception("Échec de l'envoi SMTP")
+        logger.exception("Échec de l'envoi SMTP via %s:%s", smtp_server, smtp_port)
         raise EmailSendError("SMTP send failed") from exc
