@@ -1,21 +1,42 @@
+import logging
 import os
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from fastapi import HTTPException
+from email.message import EmailMessage
+
+import aiosmtplib
 from dotenv import load_dotenv
 
 # Charger le fichier .env
 load_dotenv()
 
-RECIPIENT_EMAIL = "kymsaindou@gmail.com"
+logger = logging.getLogger(__name__)
 
-async def send_contact_email(contact_data: dict):
+RECIPIENT_EMAIL = "kymsaindou@gmail.com"
+SMTP_TIMEOUT_SECONDS = 15
+
+
+class EmailNotConfiguredError(RuntimeError):
+    """Les identifiants SMTP sont absents hors environnement de développement."""
+
+
+class EmailSendError(RuntimeError):
+    """L'envoi SMTP a échoué (le détail reste dans les logs serveur)."""
+
+
+def is_dev() -> bool:
+    return os.getenv("ENV", "production").lower() in {"dev", "development", "local"}
+
+
+def _single_line(value: str) -> str:
+    # Empêche toute injection d'en-tête (CR/LF) dans Subject / Reply-To
+    return " ".join(value.replace("\r", " ").replace("\n", " ").split())
+
+
+async def send_contact_email(contact_data: dict) -> None:
     """
-    Sends an email with the contact form data.
-    If credentials are missing, just logs it (Dev mode).
+    Envoie le message du formulaire de contact.
+    En développement sans identifiants SMTP, le message est simplement journalisé.
+    Lève EmailNotConfiguredError ou EmailSendError en cas d'échec.
     """
-    # Lire les variables au moment de l'appel (après load_dotenv)
     smtp_server = os.getenv("SMTP_SERVER", "smtp.gmail.com")
     smtp_port = int(os.getenv("SMTP_PORT", "587"))
     smtp_user = os.getenv("SMTP_USER", "")
@@ -23,38 +44,39 @@ async def send_contact_email(contact_data: dict):
     sender_email = os.getenv("SENDER_EMAIL", smtp_user)
 
     if not smtp_user or not smtp_password:
-        print(f"[MOCK EMAIL] To: {RECIPIENT_EMAIL} | From: {contact_data['email']} | Subject: New Portfolio Contact: {contact_data['type']}")
-        print(f"Message: {contact_data['message']}")
-        return True
+        if is_dev():
+            logger.info("[MOCK EMAIL] type=%s (SMTP non configuré, ENV=dev)", contact_data["type"])
+            return
+        raise EmailNotConfiguredError("SMTP credentials missing")
+
+    name = _single_line(contact_data["name"])
+    msg = EmailMessage()
+    msg["From"] = sender_email
+    msg["To"] = RECIPIENT_EMAIL
+    msg["Reply-To"] = _single_line(contact_data["email"])
+    msg["Subject"] = f"Portfolio : {_single_line(contact_data['type'])} — {name}"
+    msg.set_content(
+        "Nouveau message de contact via le portfolio :\n\n"
+        f"Nom     : {name}\n"
+        f"Email   : {contact_data['email']}\n"
+        f"Type    : {contact_data['type']}\n\n"
+        "--------------------------------------------------\n"
+        "Message :\n"
+        f"{contact_data['message']}\n"
+        "--------------------------------------------------\n"
+    )
 
     try:
-        msg = MIMEMultipart()
-        msg['From'] = sender_email
-        msg['To'] = RECIPIENT_EMAIL
-        # Sanitize subject to prevent header injection
-        clean_name = contact_data['name'].replace('\n', ' ').replace('\r', ' ')
-        msg['Subject'] = f"Portfolio Contact: {contact_data['type']} from {clean_name}"
-
-        body = f"""
-Nouveau message de contact via le portfolio :
-
-Nom     : {contact_data['name']}
-Email   : {contact_data['email']}
-Type    : {contact_data['type']}
-
---------------------------------------------------
-Message :
-{contact_data['message']}
---------------------------------------------------
-        """
-        msg.attach(MIMEText(body, 'plain'))
-
-        server = smtplib.SMTP(smtp_server, smtp_port)
-        server.starttls()
-        server.login(smtp_user, smtp_password)
-        server.send_message(msg)
-        server.quit()
-        return True
-    except Exception as e:
-        print(f"Failed to send email: {e}")
-        raise HTTPException(status_code=500, detail=f"Failed to send email: {str(e)}")
+        await aiosmtplib.send(
+            msg,
+            hostname=smtp_server,
+            port=smtp_port,
+            username=smtp_user,
+            password=smtp_password,
+            start_tls=smtp_port != 465,
+            use_tls=smtp_port == 465,
+            timeout=SMTP_TIMEOUT_SECONDS,
+        )
+    except Exception as exc:  # noqa: BLE001 — détail journalisé, jamais renvoyé au client
+        logger.exception("Échec de l'envoi SMTP")
+        raise EmailSendError("SMTP send failed") from exc
