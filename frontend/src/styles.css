@@ -888,10 +888,19 @@ section[id] {
   color: var(--ink-2);
 }
 
+.ledger__proofs {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
 .ledger__proof {
   justify-self: start;
   display: inline-flex;
   align-items: center;
+  gap: 0.3rem;
   min-height: 44px;
   font-family: var(--font-hand);
   font-size: 1.35rem;
@@ -922,6 +931,11 @@ section[id] {
     text-align: right;
     min-height: 0;
     padding-top: 0.15rem;
+  }
+
+  .ledger__proofs {
+    grid-column: auto;
+    align-items: flex-end;
   }
 }
 
@@ -1050,7 +1064,8 @@ section[id] {
   max-width: 68ch;
 }
 
-.case__aside {
+.case__aside,
+.case__demo {
   color: var(--ink-2);
 }
 
