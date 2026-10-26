@@ -40,6 +40,8 @@ Parcours réel, à présenter avec son secteur d'origine (ne jamais tout requali
 ## Evidence on Hand
 Chiffres mesurés utilisables (source : CV 2026) : 100 000+ documents d'études cliniques indexés en local ; 100 % de citations fidèles sur les fiches d'alerte ; taux de faux négatifs < 1 % validé par audit LLM-as-a-judge ; mise en production en 8 jours ; 99,5 % de conversion des formats anciens ; plusieurs dizaines de milliers d'avis analysés ; près de 3 ans d'IA appliquée.
 
+Démo publique testable : l'assistant documentaire RAG, même architecture que le projet Biofortis, reconstruit sur les données publiques de ClinicalTrials.gov — https://clinicalrag.moudathirou.com/demo. À présenter comme une reconstitution sur données publiques, jamais comme l'application d'origine.
+
 Absences à ne jamais combler par invention : **aucun code, capture ou donnée publiable** (projets d'entreprise confidentiels), aucun témoignage, aucun logo client, aucun tarif, aucune latence ou précision non listée ci-dessus. Les démonstrations sont des reconstitutions avec documents fictifs, signalées comme telles.
 
 ## Product Principles
